@@ -15,6 +15,16 @@ import org.hibernate.Transaction;
 import com.util.EmptyUtil;
 import com.util.HibernateUtil;
 
+/**
+ * Description:   基础dao类
+ * @author: Eason
+ * Create Date: 2014-8-4
+ * <pre>
+ * 修改记录:
+ * 修改后版本			修改人		修改日期			修改内容 
+ * 2014-8-4.1		Eason		2014-8-4		create					
+ * </pre>
+ */
 public class BaseDao {
 	
 //	private static final int MAX_RESULT=100;

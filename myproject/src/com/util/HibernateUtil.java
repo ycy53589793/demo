@@ -6,6 +6,16 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
+/**
+ * Description:   hibernate工具类
+ * @author: Eason
+ * Create Date: 2014-8-4
+ * <pre>
+ * 修改记录:
+ * 修改后版本			修改人		修改日期			修改内容 
+ * 2014-8-4.1		Eason		2014-8-4		create					
+ * </pre>
+ */
 public class HibernateUtil {
 	
 	private static SessionFactory sessionFactory;

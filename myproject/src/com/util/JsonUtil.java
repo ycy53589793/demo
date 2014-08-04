@@ -14,8 +14,25 @@ import net.sf.json.JSONObject;
 import com.constant.Constant;
 import com.constant.Encoding;
 
+/**
+ * Description:   json工具类，用来对所有json进行处理
+ * @author: Eason
+ * Create Date: 2014-8-4
+ * <pre>
+ * 修改记录:
+ * 修改后版本			修改人		修改日期			修改内容 
+ * 2014-8-4.1		Eason		2014-8-4		create					
+ * </pre>
+ */
 public class JsonUtil extends JSONUtil {
 	
+	/**
+	 * Description :读取json文件，并用字符串返回读取内容
+	 * @param path
+	 * @return json文件内容
+	 * @Author: 杨聪艺
+	 * @Create Date: 2014-4-3
+	 */
 	private static String readFileAsString(String path) {
 		//从json文件读取的值
 		String json="";
@@ -46,6 +63,13 @@ public class JsonUtil extends JSONUtil {
 		return json;
 	}
 	
+	/**
+	 * Description :读取json文件，并用InputStream返回读取内容
+	 * @param path
+	 * @return json文件流
+	 * @Author: 杨聪艺
+	 * @Create Date: 2014-4-3
+	 */
 	public static InputStream readFileAsStream(String classPath) {
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
         InputStream input = loader.getResourceAsStream(classPath);
