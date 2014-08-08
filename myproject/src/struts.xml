@@ -11,6 +11,10 @@
 	<include file="com/role/struts-role.xml"></include>
 	<!-- 服务端用户管理模块 -->
 	<include file="com/user/struts-user.xml"></include>
+	<!-- 服务端订单统计模块 -->
+	<include file="com/statistic/statistic-order.xml"></include>
+	<!-- 服务端报表管理模块 -->
+	<include file="com/report/report-order.xml"></include>
 	<!-- 物流订单管理查询action
 	<package name="app" extends="struts-default">
 		<action name="popWinAction" class="com.common.temple.pop.action.PopWinAction" method="execute">
