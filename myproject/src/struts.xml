@@ -3,6 +3,8 @@
 <struts>
 	<!-- 编码   -->
 	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<!-- 公共模块 -->
+	<include file="com/common/struts-common.xml"></include>
 	<!-- 服务端订单管理模块 -->
 	<include file="com/order/struts-order.xml"></include>
 	<!-- 服务端角色管理模块 -->

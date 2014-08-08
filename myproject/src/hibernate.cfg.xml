@@ -8,20 +8,24 @@
     <session-factory>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="connection.url">
-        	<![CDATA[jdbc:mysql://10.0.16.16:4066/vipym_mysql_idfnfh0i?useUnicode=true&characterEncoding=gbk]]>
+        	<![CDATA[jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=gbk]]>
         </property>
-        <property name="connection.username">6EC8GdNc</property>
-        <property name="connection.password">lmG1b7wnyObi</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="javax.persistence.validation.mode">none</property>
     
-    	<!-- 查询条件配置-模块
-    	<mapping resource="com/common/data/bean/QueryGroupBean.hbm.xml"/> -->
-    	<!-- 查询条件配置-查询字段 
-    	<mapping resource="com/common/data/bean/QueryFieldBean.hbm.xml"/> -->
+    	<!-- user -->
+    	<mapping resource="com/user/bean/User.hbm.xml"/>
+    	<!-- org -->
+    	<mapping resource="com/user/bean/Org.hbm.xml"/>
+    	<!-- role -->
+    	<mapping resource="com/user/bean/Role.hbm.xml"/>
+    	<!-- type -->
+    	<mapping resource="com/user/bean/Type.hbm.xml"/>
     </session-factory>
 
 </hibernate-configuration>
