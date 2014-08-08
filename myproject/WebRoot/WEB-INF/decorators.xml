@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/">
+	<excludes>
+		<pattern>/common/*</pattern>
+		<pattern>/EasyUI/*</pattern>
+		<pattern>/BootStrap/*</pattern>
+	</excludes>
+	<decorator name="main" page="index.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+</decorators>
