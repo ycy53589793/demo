@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="sitemesh"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -97,6 +98,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="apple-touch-icon-precomposed" href="BootStrap/2.3.2/docs/assets/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="BootStrap/2.3.2/docs/assets/ico/favicon.png">
 
+	<sitemesh:head/>
+	
   </head>
   
   <body>
@@ -119,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div><!-- /.navbar -->
       </div>
 
-
+	  <sitemesh:body/>
 
       <hr>
 
