@@ -8,4 +8,28 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <filter>
+  	<filter-name>struts2</filter-name>
+  	<filter-class>
+  		org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+  	</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>struts2</filter-name>
+  	<url-pattern>*.action</url-pattern>
+  </filter-mapping>
+  <!-- 指定spring配置文件位置 -->
+	<context-param>
+	   <param-name>contextConfigLocation</param-name>
+	   <param-value>
+	    <!--加载多个spring配置文件 -->
+	    classpath:/applicationContext.xml
+	   </param-value>
+	</context-param>
+	<!-- 定义SPRING监听器，加载spring -->
+	<listener>
+	   <listener-class>
+	    org.springframework.web.context.ContextLoaderListener
+	   </listener-class>
+	</listener>
 </web-app>
