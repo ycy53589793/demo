@@ -92,6 +92,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       }
     </style>
     <link href="BootStrap/2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="EasyUI/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="EasyUI/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="EasyUI/demo/demo.css">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -105,6 +109,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="apple-touch-icon-precomposed" href="BootStrap/2.3.2/docs/assets/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="BootStrap/2.3.2/docs/assets/ico/favicon.png">
 
+	<script src="BootStrap/2.3.2/docs/assets/js/jquery.js"></script>
+	<script type="text/javascript" src="EasyUI/jquery.easyui.min.js"></script>
+	
 	<sitemesh:head/>
 	
   </head>
@@ -142,7 +149,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="BootStrap/2.3.2/docs/assets/js/jquery.js"></script>
     <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-transition.js"></script>
     <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-alert.js"></script>
     <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-modal.js"></script>
@@ -155,5 +161,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-collapse.js"></script>
     <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-carousel.js"></script>
     <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-typeahead.js"></script>
+    
   </body>
 </html>
