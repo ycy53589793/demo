@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -25,7 +26,7 @@ import com.util.HibernateUtil;
  * 2014-8-4.1		Eason		2014-8-4		create					
  * </pre>
  */
-public class BaseDao {
+public abstract class BaseDao {
 	
 //	private static final int MAX_RESULT=100;
 	
@@ -72,6 +73,9 @@ public class BaseDao {
 	public void deleteByIds(List<Long> ids,Object obj) {
 		
 	}
+	
+	@SuppressWarnings("rawtypes")
+	public abstract List queryByCondition(Map<String,Object> condition);
 	
 	public void insertBySQL(String sql) {
 		Connection con=getConnection();
