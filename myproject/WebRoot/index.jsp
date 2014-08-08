@@ -1,9 +1,16 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="sitemesh"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
+<c:url var="user" value="/user/user.jsp"/>
+<c:url var="role" value="/role/role.jsp"/>
+<c:url var="order" value="/order/order.jsp"/>
+<c:url var="report" value="/report/report.jsp"/>
+<c:url var="statistic" value="/statistic/statistic.jsp"/>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -111,11 +118,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="navbar-inner">
             <div class="container">
               <ul class="nav">
-                <li class="active"><a href="#">订单管理</a></li>
-                <li><a href="#">角色管理</a></li>
-                <li><a href="#">用户管理</a></li>
-                <li><a href="#">统计管理</a></li>
-                <li><a href="#">报表管理</a></li>
+                <li class="active"><a href="${order}">订单管理</a></li>
+                <li><a href="${role}">角色管理</a></li>
+                <li><a href="${user}">用户管理</a></li>
+                <li><a href="${statistic}">统计管理</a></li>
+                <li><a href="${report}">报表管理</a></li>
               </ul>
             </div>
           </div>
