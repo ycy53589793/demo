@@ -15,13 +15,5 @@
                 <comment>类型名</comment>
             </column>
         </property>
-        <set name="users" inverse="true">
-            <key>
-                <column name="type_id">
-                    <comment>类型id</comment>
-                </column>
-            </key>
-            <one-to-many class="com.user.bean.User" />
-        </set>
     </class>
 </hibernate-mapping>
