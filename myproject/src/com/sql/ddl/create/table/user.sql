@@ -1,6 +1,6 @@
 --创建用户表
 create table user (
-	id int not null primary key,
+	id int not null auto_increment primary key,
 	sex char(1) COMMENT '性别',
 	role_id int COMMENT '角色id',
 	org_id int COMMENT '公司id',
