@@ -58,7 +58,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript">
     	$(document).ready(
     		function () {
-    			//初始化列表
+	    		/** 百度地图API功能 **/
+			    var map = new BMap.Map("map");            // 创建Map实例
+			    var point = new BMap.Point(116.404, 39.915); // 创建点坐标
+			    map.centerAndZoom(point,15);                 // 初始化地图,设置中心点坐标和地图级别。
+			    map.enableScrollWheelZoom();                 //启用滚轮放大缩小
+    			/** 初始化列表**/
     			$('#orderListTable').datagrid({
 			        //url						: '${ctx}/receiptGroup/getReceiptGroupInfoData' ,
 			        //queryParams		: $("#queryForm").serializeJson(),
@@ -96,11 +101,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                }
 	                ],  
 			    });
-			    
-			    //初始化地图
-			    var map = new BMap.Map('map');
-			    var point = BMap.Point(116.404,39.915);
-			    map.centerAndZoom(point,15);
     		}
     	);
     </script>
