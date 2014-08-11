@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    map.centerAndZoom(point,15);                 // 初始化地图,设置中心点坐标和地图级别。
 			    map.enableScrollWheelZoom();                 //启用滚轮放大缩小
     			/** 初始化列表**/
-    			$('#orderListTable').datagrid({
+    			$("#orderListTable").datagrid({
 			        //url						: '${ctx}/receiptGroup/getReceiptGroupInfoData' ,
 			        //queryParams		: $("#queryForm").serializeJson(),
 	    			width					: '100%', 
