@@ -1,8 +1,10 @@
 package com.common;
 
 import com.BaseAction;
+import com.constant.Constant;
 import com.opensymphony.xwork2.Action;
 import com.user.service.UserService;
+import com.util.EmptyUtil;
 import com.util.ResultMessage;
 
 /**
@@ -33,6 +35,14 @@ public class LoginAction extends BaseAction {
 	 * @Create Date: 2014-4-3
 	 */
 	public String checkUser() throws Exception {
+		
+		if(EmptyUtil.isEmpty(username) || EmptyUtil.isEmpty(password)) {
+			username = (String) strutsSession.get(Constant.STRING.USERNAME);
+			password = (String) strutsSession.get(Constant.STRING.PASSWORD);
+		}
+		if(EmptyUtil.isEmpty(username) || EmptyUtil.isEmpty(password)) {
+			return Action.ERROR;
+		}
 		
 		//spring自动注入
 		UserService userService = (UserService)getBean("userService");
