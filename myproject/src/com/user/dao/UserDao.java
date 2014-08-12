@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.BaseDao;
 import com.user.bean.User;
+import com.util.EmptyUtil;
 import com.util.HibernateUtil;
 
 /**
@@ -37,9 +38,11 @@ public class UserDao extends BaseDao {
 		Session session=HibernateUtil.getSession();
 		//构造查询条件
 		Criteria criteria=session.createCriteria(User.class);
-		Set<String> keys=condition.keySet();
-		for(String key:keys) {
-			criteria.add(Restrictions.eq(key,condition.get(key)));
+		if(EmptyUtil.isNotNull(condition)) {
+			Set<String> keys=condition.keySet();
+			for(String key:keys) {
+				criteria.add(Restrictions.eq(key,condition.get(key)));
+			}
 		}
 		//查询
 		List res=criteria.list();
