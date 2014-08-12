@@ -46,7 +46,7 @@ public class BaseAction extends ActionSupport {
 	protected ServletContext servletContext = ServletActionContext.getServletContext();
 	protected HttpServletResponse servletResponse = ServletActionContext.getResponse();
 	
-	private static ApplicationContext applicationContext = new ClassPathXmlApplicationContext(SPRINGCONTEXT);;
+	private static ApplicationContext applicationContext = new ClassPathXmlApplicationContext(SPRINGCONTEXT);
 	
 	
 	public String execute() throws Exception {
