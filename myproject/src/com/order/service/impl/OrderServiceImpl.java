@@ -10,8 +10,8 @@ public class OrderServiceImpl implements OrderService {
 	
 	private OrderDao orderDao;
 	
-	public List<Order> getOrders() {
-		return orderDao.getOrders();
+	public List<Order> getOrders(Integer pageNo,Integer pageSize) {
+		return orderDao.getOrders(pageNo,pageSize);
 	}
 
 	public OrderDao getOrderDao() {

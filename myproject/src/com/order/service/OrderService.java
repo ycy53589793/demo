@@ -6,6 +6,6 @@ import com.order.bean.Order;
 
 public interface OrderService {
 	
-	public List<Order> getOrders();
+	public List<Order> getOrders(Integer pageNo,Integer pageSize);
 
 }

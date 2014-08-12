@@ -17,6 +17,11 @@ public class OrderDao extends BaseDao {
 
 	@SuppressWarnings("rawtypes")
 	public List queryByCondition(Map<String, Object> condition) {
+		return queryByCondition(condition,null,null);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public List queryByCondition(Map<String, Object> condition,Integer pageNo,Integer pageSize) {
 		//获取session
 		Session session=HibernateUtil.getSession();
 		//构造查询条件
@@ -27,6 +32,11 @@ public class OrderDao extends BaseDao {
 				criteria.add(Restrictions.eq(key,condition.get(key)));
 			}
 		}
+		//分页
+		if(EmptyUtil.isNotEmpty(pageNo) && EmptyUtil.isNotEmpty(pageSize)) {
+			criteria.setFirstResult(pageSize*(pageNo-1));
+			criteria.setMaxResults(pageSize);
+		}
 		//查询
 		List res=criteria.list();
 		//关闭session
@@ -35,9 +45,18 @@ public class OrderDao extends BaseDao {
 		return res;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<Order> getOrders() {
-		return (List<Order>)queryByCondition(null);
+		return getOrders(null,null);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Order> getOrders(Integer pageNo,Integer pageSize) {
+		if(EmptyUtil.isNotEmpty(pageNo) && EmptyUtil.isNotEmpty(pageSize)) {
+			return queryByPageInfo(Order.class, pageNo, pageSize);
+		}
+		else {
+			return (List<Order>)searchAll(Order.class);
+		}
 	}
 
 }

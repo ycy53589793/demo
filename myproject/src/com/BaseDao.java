@@ -12,6 +12,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 
 import com.util.EmptyUtil;
 import com.util.HibernateUtil;
@@ -121,8 +122,17 @@ public abstract class BaseDao {
 	
 	@SuppressWarnings("rawtypes")
 	public List queryAll(Class<?> clazz) {
+		return queryByPageInfo(clazz,null,null);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public List queryByPageInfo(Class<?> clazz,Integer pageNo,Integer pageSize) {
 		Session session=HibernateUtil.getSession();
 		Criteria c=session.createCriteria(clazz);
+		if(EmptyUtil.isNotEmpty(pageNo) && EmptyUtil.isNotEmpty(pageSize)) {
+			c.setFirstResult(pageSize*(pageNo-1));
+			c.setMaxResults(pageSize);
+		}
 		List res=c.list();
 		HibernateUtil.closeSession(session);
 		return res;
@@ -155,14 +165,14 @@ public abstract class BaseDao {
 	 * @Author: 杨聪艺
 	 * @Create Date: 2014-6-8
 	 */
-//	public long getCount(Class<?> clazz) {
-//		Session session=HibernateUtil.getSession();
-//		Criteria c=session.createCriteria(clazz);
-//		c.setProjection(Projections.rowCount());
-//		long totalRecords=Long.parseLong(c.uniqueResult().toString());
-//		HibernateUtil.closeSession(session);
-//		return totalRecords;
-//	}
+	public long getCount(Class<?> clazz) {
+		Session session=HibernateUtil.getSession();
+		Criteria c=session.createCriteria(clazz);
+		c.setProjection(Projections.rowCount());
+		long totalRecords=Long.parseLong(c.uniqueResult().toString());
+		HibernateUtil.closeSession(session);
+		return totalRecords;
+	}
 	
 	/**
 	 * Description :查询总记录数

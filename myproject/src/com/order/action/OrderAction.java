@@ -25,7 +25,7 @@ public class OrderAction extends PageAction {
 		
 		orderService = (OrderService) SpringUtil.getBean("orderService");
 		//获取订单
-		List<Order> orders = orderService.getOrders();
+		List<Order> orders = orderService.getOrders(pageNo,pageSize);
 		//转成json
 		Map<String,Object> orderMap = new HashMap<String,Object>();
 		orderMap.put("rows", orders);

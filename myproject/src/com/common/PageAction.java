@@ -11,7 +11,7 @@ public class PageAction extends BaseAction {
 	
 	private String page = (String) servletRequest.getParameter("page");
 	private String rows = (String) servletRequest.getParameter("rows");
-	protected int pageNum = Integer.parseInt((page == null || page == "0") ? "1":page);
+	protected int pageNo = Integer.parseInt((page == null || page == "0") ? "1":page);
 	protected int pageSize = Integer.parseInt((rows == null || rows == "0") ? "1":rows);
 	
 	public String getPage() {
