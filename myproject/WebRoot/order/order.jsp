@@ -1,8 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
+<c:url var="getOrders" value="/order/action/orderAction_getOrders.action"/>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -63,20 +66,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    var point = new BMap.Point(116.404, 39.915); // 创建点坐标
 			    map.centerAndZoom(point,15);                 // 初始化地图,设置中心点坐标和地图级别。
 			    map.enableScrollWheelZoom();                 //启用滚轮放大缩小
+			    
     			/** 初始化列表**/
     			$("#orderListTable").datagrid({
-			        //url						: '${ctx}/receiptGroup/getReceiptGroupInfoData' ,
-			        //queryParams		: $("#queryForm").serializeJson(),
+			        url						: '${getOrders}' ,
 	    			width					: '100%', 
-	    			height					: 'auto',
+	    			height					: '480px',
 	    			pagination		 	: true,/*是否显示下面的分页菜单*/
 	    			pageNumber 		: 1,
 	    	        pageList				: [ 10,20,30 ],
 	    			rownumbers		: true,
 			        columns:[[
-					{ field:'ck',checkbox:true },          
-			        {field:'listId'							,title:'ID'					,width:100},
-			        {field:'listName'						,title:'收件组'					,width:120}
+					{field:'ck',checkbox:true },          
+			        {field:'id'							,title:'订单号'					,width:100},
+			        {field:'passengerPhone'						,title:'乘客手机号'					,width:120}
 			        /*
 			        {field:'operate'		,title:'操作'						,width:150, align:'right',
 	                    formatter:function(value,rec,index) {
@@ -101,6 +104,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                }
 	                ],  
 			    });
+			    $("#orderListTable").datagrid('getPager').pagination({
+				    displayMsg:'共有 {total}条记录',
+				    showPageList:true,
+				    beforePageText:'当前第',
+				    afterPageText:'页，本页共 {pages}条记录',
+				    onSelectPage:function(pageNumber, pageSize){
+				        $(this).pagination('loading');
+				        alert('pageNumber:'+pageNumber+',pageSize:'+pageSize);
+				        $(this).pagination('loaded');
+				    }
+				});
     		}
     	);
     </script>

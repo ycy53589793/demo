@@ -9,7 +9,7 @@ import com.user.bean.Org;
  * entity. @author MyEclipse Persistence Tools
  */
 
-public abstract class Order implements java.io.Serializable {
+public class Order implements java.io.Serializable {
 
 	// Fields
 

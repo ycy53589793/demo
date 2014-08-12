@@ -1,12 +1,17 @@
 package com.order.action;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import com.BaseAction;
+import net.sf.json.JSONObject;
+
+import com.common.PageAction;
 import com.order.bean.Order;
 import com.order.service.OrderService;
+import com.util.SpringUtil;
 
-public class OrderAction extends BaseAction {
+public class OrderAction extends PageAction {
 
 	/**
 	 * 
@@ -14,13 +19,32 @@ public class OrderAction extends BaseAction {
 	private static final long serialVersionUID = -3044009783035775912L;
 	
 	private OrderService orderService;
+	private JSONObject jsonOrders;
 	
-	public List<Order> getOrders() {
+	public String getOrders() {
 		
-		orderService = (OrderService) getBean("orderService");
+		orderService = (OrderService) SpringUtil.getBean("orderService");
+		//获取订单
+		List<Order> orders = orderService.getOrders();
+		//转成json
+		Map<String,Object> orderMap = new HashMap<String,Object>();
+		orderMap.put("rows", orders);
+		orderMap.put("total", orders.size());
+		try {
+			jsonOrders=JSONObject.fromObject(orderMap);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
-		return orderService.getOrders();
+		return JSON;
 		
 	}
 
+	public JSONObject getJsonOrders() {
+		return jsonOrders;
+	}
+	public void setJsonOrders(JSONObject jsonOrders) {
+		this.jsonOrders = jsonOrders;
+	}
+	
 }

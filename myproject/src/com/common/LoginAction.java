@@ -6,6 +6,7 @@ import com.opensymphony.xwork2.Action;
 import com.user.service.UserService;
 import com.util.EmptyUtil;
 import com.util.ResultMessage;
+import com.util.SpringUtil;
 
 /**
  * Description:   登陆页面action
@@ -45,7 +46,7 @@ public class LoginAction extends BaseAction {
 		}
 		
 		//spring自动注入
-		UserService userService = (UserService)getBean("userService");
+		UserService userService = (UserService) SpringUtil.getBean("userService");
 		
 		ResultMessage msg=userService.checkUserExist(username, password);
 		

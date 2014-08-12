@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
@@ -30,7 +28,7 @@ public class BaseAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final String SPRINGCONTEXT = "applicationContext.xml";
+	protected String JSON = "json";
 	
 	private static ActionContext strutsContext=ActionContext.getContext();
 	
@@ -46,15 +44,8 @@ public class BaseAction extends ActionSupport {
 	protected ServletContext servletContext = ServletActionContext.getServletContext();
 	protected HttpServletResponse servletResponse = ServletActionContext.getResponse();
 	
-	private static ApplicationContext applicationContext = new ClassPathXmlApplicationContext(SPRINGCONTEXT);
-	
-	
 	public String execute() throws Exception {
 		return Action.SUCCESS;
 	}
 	
-	public Object getBean(String beanId) {
-		return applicationContext.getBean(beanId);
-	}
-
 }

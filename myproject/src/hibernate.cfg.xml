@@ -26,6 +26,8 @@
     	<mapping resource="com/user/bean/Role.hbm.xml"/>
     	<!-- type -->
     	<mapping resource="com/user/bean/Type.hbm.xml"/>
+    	<!-- order -->
+    	<mapping resource="com/order/bean/Order.hbm.xml"/>
     </session-factory>
 
 </hibernate-configuration>
