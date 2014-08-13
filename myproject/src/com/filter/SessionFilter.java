@@ -53,6 +53,7 @@ public class SessionFilter implements Filter {
 //			}
 //		}
 		
+		
 		// 如果user为空，表示非法访问，跳转到登陆页面
 		if (user == null) {
 			// 跳转到登陆页面
