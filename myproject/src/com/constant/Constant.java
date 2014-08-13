@@ -20,5 +20,8 @@ public class Constant {
 	public static final class STRING {
 		public static final String Y="Y",N="N";
 	}
+	
+	/**user*/
+	public final static String LOGIN_USER = "user";
 
 }
