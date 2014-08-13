@@ -140,9 +140,18 @@ public abstract class BaseDao {
 	
 	@SuppressWarnings("rawtypes")
 	public Iterator searchAll(Class<?> clazz) {
+		return searchByPageInfo(clazz,null,null);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public Iterator searchByPageInfo(Class<?> clazz,Integer pageNo,Integer pageSize) {
 		Session session=HibernateUtil.getSession();
 		String hql="from "+clazz.getName();
 		Query q=session.createQuery(hql);
+		if(EmptyUtil.isNotEmpty(pageNo) && EmptyUtil.isNotEmpty(pageSize)) {
+			q.setFirstResult(pageSize*(pageNo-1));
+			q.setMaxResults(pageSize);
+		}
 		Iterator ite=q.iterate();
 		HibernateUtil.closeSession(session);
 		return ite;
@@ -150,9 +159,18 @@ public abstract class BaseDao {
 	
 	@SuppressWarnings("rawtypes")
 	public List findAll(Class<?> clazz) {
+		return findByPageInfo(clazz,null,null);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public List findByPageInfo(Class<?> clazz,Integer pageNo,Integer pageSize) {
 		Session session=HibernateUtil.getSession();
 		String hql="from "+clazz.getName();
 		Query q=session.createQuery(hql);
+		if(EmptyUtil.isNotEmpty(pageNo) && EmptyUtil.isNotEmpty(pageSize)) {
+			q.setFirstResult(pageSize*(pageNo-1));
+			q.setMaxResults(pageSize);
+		}
 		List res=q.list();
 		HibernateUtil.closeSession(session);
 		return res;
