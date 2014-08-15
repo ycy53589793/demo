@@ -19,8 +19,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <title>拼车系统</title>
     
-    <!-- Le styles -->
-    <link href="BootStrap/2.3.2/docs/assets/css/bootstrap.css" rel="stylesheet">
+    <jsp:include page="common/jscss.jsp"/>
+    
     <style type="text/css">
       body {
         padding-top: 20px;
@@ -91,27 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         border-radius: 0 3px 3px 0;
       }
     </style>
-    <link href="BootStrap/2.3.2/docs/assets/css/bootstrap-responsive.css" rel="stylesheet">
-    
-    <link rel="stylesheet" type="text/css" href="EasyUI/themes/default/easyui.css">
-	<link rel="stylesheet" type="text/css" href="EasyUI/themes/icon.css">
-	<link rel="stylesheet" type="text/css" href="EasyUI/demo/demo.css">
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="BootStrap/2.3.2/docs/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="BootStrap/2.3.2/docs/assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="BootStrap/2.3.2/docs/assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="BootStrap/2.3.2/docs/assets/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="BootStrap/2.3.2/docs/assets/ico/favicon.png">
-
-	<script src="BootStrap/2.3.2/docs/assets/js/jquery.js"></script>
-	<script type="text/javascript" src="EasyUI/jquery.easyui.min.js"></script>
-	
 	<sitemesh:head/>
 	
   </head>
@@ -145,22 +125,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>
 
     </div> <!-- /container -->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-transition.js"></script>
-    <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-alert.js"></script>
-    <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-modal.js"></script>
-    <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-dropdown.js"></script>
-    <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-scrollspy.js"></script>
-    <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-tab.js"></script>
-    <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-tooltip.js"></script>
-    <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-popover.js"></script>
-    <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-button.js"></script>
-    <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-collapse.js"></script>
-    <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-carousel.js"></script>
-    <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-typeahead.js"></script>
     
   </body>
 </html>

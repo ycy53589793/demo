@@ -60,7 +60,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       }
     </style>
     
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=EEa3f300028b847fb03c71ca83a82291"></script>
     <script type="text/javascript">
     	$(document).ready(
     		function () {
@@ -153,11 +152,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       			<td>订单号</td><td>乘客手机号</td><td>起始地</td><td>目的地</td><td>状态</td><td>是否包车</td><td>是否预约</td>
       		</tr>
       		<tr>
-      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></td>
-      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></td>
-      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></td>
-      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></td>
-      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></td>
+      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"/></td>
+      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"/></td>
+      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"/></td>
+      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"/></td>
+      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"/></td>
       			<td>
       				<select class="easyui-combobox" name="state" style="width:120px;">
       					<option value="Y">是</option>
@@ -171,8 +170,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       				</select>
       			</td>
       		</tr>
+      		<tr style="height: 10px"></tr>
       		<tr>
-      			<td>人数</td><td>是否包车</td><td>是否带小孩</td><td>是否预约</td><td>预约时间</td><td>失效时间</td><td>延长时间</td>
+      			<td>人数</td><td>是否带小孩</td><td>是否预约</td><td>预约时间</td><td>失效时间</td><td>延长时间</td><td>下单时间</td>
+      		</tr>
+      		<tr>
+      			<td><input class="easyui-numberbox"/></td>
+      			<td>
+      				<select class="easyui-combobox" name="state" style="width:120px;">
+      					<option value="Y">是</option>
+						<option value="N">否</option>
+      				</select>
+      			</td>
+      			<td>
+      				<select class="easyui-combobox" name="state" style="width:120px;">
+      					<option value="Y">是</option>
+						<option value="N">否</option>
+      				</select>
+      			</td>
+      			<td><input class="easyui-datetimebox" required style="width:120px"/></td>
+      			<td><input class="easyui-datetimebox" required style="width:120px"/></td>
+      			<td><input class="easyui-datetimebox" required style="width:120px"/></td>
+      			<td><input class="easyui-datetimebox" required style="width:120px"/></td>
+      		</tr>
+      		<tr style="height: 10px"></tr>
+      		<tr>
+      			<td>备注</td>
+      		</tr>
+      		<tr>
+      			<td><input class="easyui-textbox" name="message" data-options="multiline:true" style="height:60px;width:120px"/></td>
       		</tr>
       	</table>
       </div>

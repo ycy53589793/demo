@@ -11,6 +11,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <title>错误信息</title>
     
+    <jsp:include page="jscss.jsp"/>
+    
 	<style type="text/css">
 		input {
 			font-size: 12px
