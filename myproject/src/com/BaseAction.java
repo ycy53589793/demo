@@ -35,10 +35,8 @@ public class BaseAction extends ActionSupport {
 	//获取由struts2包装好的request session application
 	@SuppressWarnings("rawtypes")
 	protected Map strutsRequest = (Map)strutsContext.get("request");
-	@SuppressWarnings("rawtypes")
-	protected Map strutsSession = strutsContext.getSession();
-	@SuppressWarnings("rawtypes")
-	protected Map strutsApplication = strutsContext.getApplication();
+	protected Map<String,Object> strutsSession = strutsContext.getSession();
+	protected Map<String,Object> strutsApplication = strutsContext.getApplication();
 	//获取servlet的request跟servletContext
 	protected HttpServletRequest servletRequest = ServletActionContext.getRequest();
 	protected ServletContext servletContext = ServletActionContext.getServletContext();
