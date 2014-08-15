@@ -9,6 +9,7 @@
 	</bean>
 	<bean id="orderAction" class="com.order.action.OrderAction" scope="prototype">
 		<property name="orderService" ref="orderService"></property>
+		<property name="order" ref="order"></property>
 	</bean>
 	
 	<bean id="userService" class="com.user.service.impl.UserServiceImpl">
@@ -20,4 +21,6 @@
 	
 	<bean id="userDao" class="com.user.dao.UserDao"/>
 	<bean id="orderDao" class="com.order.dao.OrderDao"/>
+	
+	<bean id="order" class="com.order.bean.Order"/>
 </beans>

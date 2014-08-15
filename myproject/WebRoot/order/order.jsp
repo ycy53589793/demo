@@ -129,6 +129,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});
     		}
     	);
+    	//查询
+    	function search() {
+    		$("#orderListTable").datagrid('load',$("#orderQueryForm").serializeJson());
+    	}
     </script>
 
   </head>
@@ -138,7 +142,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	  <div class="masthead">
 		  <ul class="nav nav-pills pull-right">
-		    <li class="active"><a href="#">查询</a></li>
+		    <li class="active"><a href="javascript:void(0)" onclick="search()">查询</a></li>
 		    <li><a href="#">重置</a></li>
 		  </ul>
 		  <h3 class="muted">查询条件</h3>
@@ -147,60 +151,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <hr>
       
       <div class="jumbotron">
-      	<table class="search">
-      		<tr>
-      			<td>订单号</td><td>乘客手机号</td><td>起始地</td><td>目的地</td><td>状态</td><td>是否包车</td><td>是否预约</td>
-      		</tr>
-      		<tr>
-      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"/></td>
-      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"/></td>
-      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"/></td>
-      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"/></td>
-      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"/></td>
-      			<td>
-      				<select class="easyui-combobox" name="state" style="width:120px;">
-      					<option value="Y">是</option>
-						<option value="N">否</option>
-      				</select>
-      			</td>
-      			<td>
-      				<select class="easyui-combobox" name="state" style="width:120px;">
-      					<option value="Y">是</option>
-						<option value="N">否</option>
-      				</select>
-      			</td>
-      		</tr>
-      		<tr style="height: 10px"></tr>
-      		<tr>
-      			<td>人数</td><td>是否带小孩</td><td>是否预约</td><td>预约时间</td><td>失效时间</td><td>延长时间</td><td>下单时间</td>
-      		</tr>
-      		<tr>
-      			<td><input class="easyui-numberbox"/></td>
-      			<td>
-      				<select class="easyui-combobox" name="state" style="width:120px;">
-      					<option value="Y">是</option>
-						<option value="N">否</option>
-      				</select>
-      			</td>
-      			<td>
-      				<select class="easyui-combobox" name="state" style="width:120px;">
-      					<option value="Y">是</option>
-						<option value="N">否</option>
-      				</select>
-      			</td>
-      			<td><input class="easyui-datetimebox" required style="width:120px"/></td>
-      			<td><input class="easyui-datetimebox" required style="width:120px"/></td>
-      			<td><input class="easyui-datetimebox" required style="width:120px"/></td>
-      			<td><input class="easyui-datetimebox" required style="width:120px"/></td>
-      		</tr>
-      		<tr style="height: 10px"></tr>
-      		<tr>
-      			<td>备注</td>
-      		</tr>
-      		<tr>
-      			<td><input class="easyui-textbox" name="message" data-options="multiline:true" style="height:60px;width:120px"/></td>
-      		</tr>
-      	</table>
+      	<form id="orderQueryForm" method="post">
+	      	<table class="search">
+	      		<tr>
+	      			<td>订单号</td><td>乘客手机号</td><td>起始地</td><td>目的地</td><td>状态</td><td>是否包车</td><td>是否预约</td>
+	      		</tr>
+	      		<tr>
+	      			<td><input class="easyui-textbox" type="text" name="orderQuery.id"/></td>
+	      			<td><input class="easyui-textbox" type="text" name="orderQuery.passengerPhone"/></td>
+	      			<td><input class="easyui-textbox" type="text" name="orderQuery.startPlace"/></td>
+	      			<td><input class="easyui-textbox" type="text" name="orderQuery.endPlace"/></td>
+	      			<td><input class="easyui-textbox" type="text" name="orderQuery.status"/></td>
+	      			<td>
+	      				<select class="easyui-combobox" name="orderQuery.isWholeCar" style="width:120px;">
+	      					<option value="Y">是</option>
+							<option value="N">否</option>
+	      				</select>
+	      			</td>
+	      			<td>
+	      				<select class="easyui-combobox" name="orderQuery.isPreOrder" style="width:120px;">
+	      					<option value="Y">是</option>
+							<option value="N">否</option>
+	      				</select>
+	      			</td>
+	      		</tr>
+	      		<tr style="height: 10px"></tr>
+	      		<tr>
+	      			<td>是否带小孩</td><td>预约时间从</td><td>预约时间到</td><td>失效时间从</td><td>失效时间到</td><td>下单时间从</td><td>下单时间到</td>
+	      		</tr>
+	      		<tr>
+	      			<td>
+	      				<select class="easyui-combobox" name="orderQuery.haveChild" style="width:120px;">
+	      					<option value="Y">是</option>
+							<option value="N">否</option>
+	      				</select>
+	      			</td>
+	      			<td><input class="easyui-datetimebox" name="orderQuery.preTimeFm" style="width:120px"/></td>
+	      			<td><input class="easyui-datetimebox" name="orderQuery.preTimeTo" style="width:120px"/></td>
+	      			<td><input class="easyui-datetimebox" name="orderQuery.expiryDateFm" style="width:120px"/></td>
+	      			<td><input class="easyui-datetimebox" name="orderQuery.expiryDateTo" style="width:120px"/></td>
+	      			<td><input class="easyui-datetimebox" name="orderQuery.createTimeFm" style="width:120px"/></td>
+	      			<td><input class="easyui-datetimebox" name="orderQuery.createTimeTo" style="width:120px"/></td>
+	      		</tr>
+	      		<tr style="height: 10px"></tr>
+	      		<tr>
+	      			<td>备注</td>
+	      		</tr>
+	      		<tr>
+	      			<td><input class="easyui-textbox" name="orderQuery.remark" data-options="multiline:true" style="height:60px;width:120px"/></td>
+	      		</tr>
+	      	</table>
+      	</form>
       </div>
 
       <hr>

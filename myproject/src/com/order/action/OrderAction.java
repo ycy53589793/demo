@@ -8,8 +8,8 @@ import net.sf.json.JSONObject;
 
 import com.common.PageAction;
 import com.order.bean.Order;
+import com.order.bean.OrderQueryCondition;
 import com.order.service.OrderService;
-import com.util.SpringUtil;
 
 public class OrderAction extends PageAction {
 
@@ -20,10 +20,10 @@ public class OrderAction extends PageAction {
 	
 	private OrderService orderService;
 	private JSONObject jsonOrders;
+	private OrderQueryCondition orderQuery;
 	
 	public String getOrders() {
 		
-		orderService = (OrderService) SpringUtil.getBean("orderService");
 		//获取订单
 		List<Order> orders = orderService.getOrders(pageNo,pageSize);
 		//转成json
@@ -39,6 +39,12 @@ public class OrderAction extends PageAction {
 		return JSON;
 		
 	}
+	
+	public String getOrderByCondition() {
+		
+		return JSON;
+		
+	}
 
 	public JSONObject getJsonOrders() {
 		return jsonOrders;
@@ -46,5 +52,19 @@ public class OrderAction extends PageAction {
 	public void setJsonOrders(JSONObject jsonOrders) {
 		this.jsonOrders = jsonOrders;
 	}
-	
+
+	public OrderService getOrderService() {
+		return orderService;
+	}
+	public void setOrderService(OrderService orderService) {
+		this.orderService = orderService;
+	}
+
+	public OrderQueryCondition getOrderQuery() {
+		return orderQuery;
+	}
+	public void setOrderQuery(OrderQueryCondition orderQuery) {
+		this.orderQuery = orderQuery;
+	}
+
 }

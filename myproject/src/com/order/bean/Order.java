@@ -1,5 +1,6 @@
 package com.order.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.user.bean.Org;
@@ -9,7 +10,7 @@ import com.user.bean.Org;
  * entity. @author MyEclipse Persistence Tools
  */
 
-public class Order implements java.io.Serializable {
+public class Order implements Serializable {
 
 	// Fields
 
