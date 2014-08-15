@@ -55,6 +55,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       	width: 122px;
       	margin-right: 20px;
       }
+      .search td {
+      	width: 230px;
+      }
     </style>
     
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=EEa3f300028b847fb03c71ca83a82291"></script>
@@ -78,8 +81,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    			rownumbers		: true,
 			        columns:[[
 					{field:'ck',checkbox:true },          
-			        {field:'id'							,title:'订单号'					,width:100},
-			        {field:'passengerPhone'						,title:'乘客手机号'					,width:120}
+			        {field:'id'							,title:'订单号'					,width:50},
+			        {field:'startPlace'							,title:'乘车地点'					,width:100},
+			        {field:'endPlace'							,title:'目的地'					,width:100},
+			        {field:'personNumber'							,title:'人数'					,width:30},
+			        {field:'isWholeCar'							,title:'是否包车'					,width:60},
+			        {field:'haveChild'							,title:'是否带小孩'					,width:70},
+			        {field:'passengerPhone'						,title:'乘客手机号'					,width:120},
+			        {field:'expiryDate'						,title:'失效时间'					,width:120},
+			        {field:'timeExpand'						,title:'延长时间'					,width:120},
+			        {field:'isPreOrder'						,title:'是否预约'					,width:60},
+			        {field:'preTime'						,title:'预约时间'					,width:120},
+			        {field:'remark'						,title:'备注'					,width:120}
 			        /*
 			        {field:'operate'		,title:'操作'						,width:150, align:'right',
 	                    formatter:function(value,rec,index) {
@@ -140,16 +153,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       			<td>订单号</td><td>乘客手机号</td><td>起始地</td><td>目的地</td><td>状态</td><td>是否包车</td><td>是否预约</td>
       		</tr>
       		<tr>
-      			<td><input type="text"/></td><td><input type="text"/></td><td><input type="text"/></td>
-      			<td><input type="text"/></td><td><input type="text"/></td>
-      			<td style="width: 120px;">
-      				<input type="radio" name="a" style="width: 20px;margin-right: 0px;"/>是
-      				<input type="radio" name="a" style="width: 20px;margin-right: 0px;" checked="checked"/>否
+      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></td>
+      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></td>
+      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></td>
+      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></td>
+      			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></td>
+      			<td>
+      				<select class="easyui-combobox" name="state" style="width:120px;">
+      					<option value="Y">是</option>
+						<option value="N">否</option>
+      				</select>
       			</td>
-      			<td style="width: 120px;">
-      				<input type="radio" name="b" style="width: 20px;height: 10px;margin-right: 0px;"/>是
-      				<input type="radio" name="b" style="width: 20px;height: 10px;margin-right: 0px;" checked="checked"/>否
+      			<td>
+      				<select class="easyui-combobox" name="state" style="width:120px;">
+      					<option value="Y">是</option>
+						<option value="N">否</option>
+      				</select>
       			</td>
+      		</tr>
+      		<tr>
+      			<td>人数</td><td>是否包车</td><td>是否带小孩</td><td>是否预约</td><td>预约时间</td><td>失效时间</td><td>延长时间</td>
       		</tr>
       	</table>
       </div>

@@ -63,12 +63,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <div class="container">
 
-      <form class="form-signin" action="loginAction_checkUser.action">
+      <form class="form-signin" action="loginAction_checkUser.action" method="post">
         <h2 class="form-signin-heading">请登陆</h2>
         <input type="text" name="username" class="input-block-level" placeholder="Email address">
         <input type="password" name="password" class="input-block-level" placeholder="Password">
         <label class="checkbox">
-          <input type="checkbox" value="remember-me"> 记住密码
+          <input type="checkbox" value="remember-me">记住密码
         </label>
         <button class="btn btn-large btn-primary" type="submit">登陆</button>
       </form>
