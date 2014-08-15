@@ -53,6 +53,8 @@ public class LoginAction extends BaseAction {
 		if(!msg.isSuccess()) {
 			return Action.ERROR;
 		}
+		//用户信息放入session
+		strutsSession.put(Constant.STRING.LOGIN_USER, msg.getResultDate());
 		
 		return Action.SUCCESS;
 	}

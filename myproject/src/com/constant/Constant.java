@@ -18,10 +18,7 @@ public class Constant {
 	}
 	//字符串常量
 	public static final class STRING {
-		public static final String Y="Y",N="N",USERNAME="username",PASSWORD="password";
+		public static final String Y="Y",N="N",USERNAME="username",PASSWORD="password",LOGIN_USER="user";
 	}
 	
-	/**user*/
-	public final static String LOGIN_USER = "user";
-
 }

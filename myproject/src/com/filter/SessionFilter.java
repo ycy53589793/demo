@@ -30,22 +30,22 @@ public class SessionFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		
-		// »ñµÃÔÚÏÂÃæ´úÂëÖĞÒªÓÃµÄrequest,response,session¶ÔÏó
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ãµï¿½request,response,sessionï¿½ï¿½ï¿½ï¿½
 		HttpServletRequest servletRequest = (HttpServletRequest) request;
 		HttpServletResponse servletResponse = (HttpServletResponse) response;
 		HttpSession session = servletRequest.getSession();
-		Object user = session.getAttribute(Constant.LOGIN_USER);// »ñÈ¡ÓÃ»§¶ÔÏó
+		Object user = session.getAttribute(Constant.STRING.LOGIN_USER);// ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 
-		// »ñµÃÓÃ»§ÇëÇóµÄURI
+		// ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½URI
 		String path = servletRequest.getRequestURI();
 
-		// µÇÂ½Ò³ÃæÎŞĞè¹ıÂË
+		// ï¿½ï¿½Â½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if (path.indexOf("/login.jsp") > -1) {
 			chain.doFilter(servletRequest, servletResponse);
 			return;
 		}
 		
-		// ´´½¨ÀàConstants.java£¬ÀïÃæĞ´µÄÊÇÎŞĞè¹ıÂËµÄÒ³Ãæ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Constants.javaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½Ò³ï¿½ï¿½
 //		for (int i = 0; i < Constants.NoFilter_Pages.length; i++) {
 //			if (path.endsWith(Constants.NoFilter_Pages[i])) {
 //				chain.doFilter(servletRequest, servletResponse);
@@ -54,13 +54,13 @@ public class SessionFilter implements Filter {
 //		}
 		
 		
-		// Èç¹ûuserÎª¿Õ£¬±íÊ¾·Ç·¨·ÃÎÊ£¬Ìø×ªµ½µÇÂ½Ò³Ãæ
+		// ï¿½ï¿½ï¿½userÎªï¿½Õ£ï¿½ï¿½ï¿½Ê¾ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Â½Ò³ï¿½ï¿½
 		if (user == null) {
-			// Ìø×ªµ½µÇÂ½Ò³Ãæ
+			// ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Â½Ò³ï¿½ï¿½
 			String contextPath = servletRequest.getContextPath();
 			servletResponse.sendRedirect(contextPath + "/common/login.jsp");
 		} else {
-			// ÒÑ¾­µÇÂ½,¼ÌĞø´Ë´ÎÇëÇó
+			// ï¿½Ñ¾ï¿½ï¿½ï¿½Â½,ï¿½ï¿½ï¿½ï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½
 			chain.doFilter(request, response);
 		}
 
