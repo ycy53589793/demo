@@ -36,6 +36,7 @@
     <script src="BootStrap/2.3.2/docs/assets/js/bootstrap-typeahead.js"></script>
     <script type="text/javascript" src="EasyUI/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=EEa3f300028b847fb03c71ca83a82291"></script>
+    <script type="text/javascript" src="common/js/myjs.js"></script>
     
   </head>
   

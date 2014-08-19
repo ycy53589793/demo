@@ -2,8 +2,11 @@ package com.order.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.user.bean.Org;
+import com.util.EmptyUtil;
 
 /**
  * Description:   订单查询条件类
@@ -44,6 +47,65 @@ public class OrderQueryCondition implements Serializable {
 	private String remark;
 	private Date createTimeFm;
 	private Date createTimeTo;
+	
+	public Map<String,Object> toMapCondition() {
+		Map<String,Object> condition = new HashMap<String, Object>();
+		if(EmptyUtil.isNotEmpty(id)) {
+			condition.put("id", id);
+		}
+		if(EmptyUtil.isNotEmpty(org) && EmptyUtil.isNotEmpty(org.getId())) {
+			condition.put("orgId", org.getId());
+		}
+		if(EmptyUtil.isNotEmpty(userPhone)) {
+			condition.put("userPhone", userPhone);
+		}
+		if(EmptyUtil.isNotEmpty(passengerPhone)) {
+			condition.put("passengerPhone", passengerPhone);
+		}
+		if(EmptyUtil.isNotEmpty(startPlace)) {
+			condition.put("startPlace", startPlace);
+		}
+		if(EmptyUtil.isNotEmpty(endPlace)) {
+			condition.put("endPlace", endPlace);
+		}
+		if(EmptyUtil.isNotEmpty(personNumber)) {
+			condition.put("personNumber", personNumber);
+		}
+		if(EmptyUtil.isNotEmpty(isWholeCar)) {
+			condition.put("isWholeCar", isWholeCar);
+		}
+		if(EmptyUtil.isNotEmpty(expiryDateFm)) {
+			condition.put("expiryDateFm", expiryDateFm);
+		}
+		if(EmptyUtil.isNotEmpty(expiryDateTo)) {
+			condition.put("expiryDateTo", expiryDateTo);
+		}
+		if(EmptyUtil.isNotEmpty(haveChild)) {
+			condition.put("haveChild", haveChild);
+		}
+		if(EmptyUtil.isNotEmpty(status)) {
+			condition.put("status", status);
+		}
+		if(EmptyUtil.isNotEmpty(isPreOrder)) {
+			condition.put("isPreOrder", isPreOrder);
+		}
+		if(EmptyUtil.isNotEmpty(preTimeFm)) {
+			condition.put("preTimeFm", preTimeFm);
+		}
+		if(EmptyUtil.isNotEmpty(preTimeTo)) {
+			condition.put("preTimeTo", preTimeTo);
+		}
+		if(EmptyUtil.isNotEmpty(remark)) {
+			condition.put("remark", remark);
+		}
+		if(EmptyUtil.isNotEmpty(createTimeFm)) {
+			condition.put("createTimeFm", createTimeFm);
+		}
+		if(EmptyUtil.isNotEmpty(createTimeTo)) {
+			condition.put("createTimeTo", createTimeTo);
+		}
+		return condition;
+	}
 	
 	public Integer getId() {
 		return id;

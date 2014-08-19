@@ -30,7 +30,7 @@ import com.util.HibernateUtil;
  */
 public abstract class BaseDao {
 	
-	private HibernateTemplateDao hibernateTemplateDao;
+	protected HibernateTemplateDao hibernateTemplateDao;
 	
 	/**
 	 * Description :

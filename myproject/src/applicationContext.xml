@@ -7,17 +7,12 @@
 	<bean id="loginAction" class="com.common.LoginAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
 	</bean>
-	<bean id="orderAction" class="com.order.action.OrderAction" scope="prototype">
-		<property name="orderService" ref="orderService"></property>
-		<property name="order" ref="order"></property>
-	</bean>
+	<bean id="orderAction" class="com.order.action.OrderAction" scope="prototype"/>
 	
 	<bean id="userService" class="com.user.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
-	<bean id="orderService" class="com.order.service.impl.OrderServiceImpl">
-		<property name="orderDao" ref="orderDao"></property>
-	</bean>
+	<bean id="orderService" class="com.order.service.impl.OrderServiceImpl"/>
 	
 	<bean id="userDao" class="com.user.dao.UserDao"/>
 	<bean id="orderDao" class="com.order.dao.OrderDao"/>

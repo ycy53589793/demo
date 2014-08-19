@@ -6,6 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <c:url var="getOrders" value="/order/action/orderAction_getOrders.action"/>
+<c:url var="getOrderByCondition" value="/order/action/orderAction_getOrderByCondition.action"/>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -130,8 +131,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		}
     	);
     	//查询
-    	function search() {
-    		$("#orderListTable").datagrid('load',$("#orderQueryForm").serializeJson());
+    	function orderQuery() {
+    		$('#orderListTable').datagrid({
+    			url				: '${getOrderByCondition}' ,
+    			queryParams		: $("#orderQueryForm").serializeJson()
+    		});
+    		//$("#orderQueryForm").submit();
     	}
     </script>
 
@@ -142,7 +147,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	  <div class="masthead">
 		  <ul class="nav nav-pills pull-right">
-		    <li class="active"><a href="javascript:void(0)" onclick="search()">查询</a></li>
+		    <li class="active"><a href="javascript:void(0)" onclick="orderQuery()">查询</a></li>
 		    <li><a href="#">重置</a></li>
 		  </ul>
 		  <h3 class="muted">查询条件</h3>
