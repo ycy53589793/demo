@@ -1,10 +1,6 @@
 package com;
 
 import java.lang.reflect.Field;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -18,6 +14,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
+import com.template.dao.HibernateTemplateDao;
 import com.util.EmptyUtil;
 import com.util.HibernateUtil;
 
@@ -33,7 +30,7 @@ import com.util.HibernateUtil;
  */
 public abstract class BaseDao {
 	
-//	private static final int MAX_RESULT=100;
+	private HibernateTemplateDao hibernateTemplateDao;
 	
 	/**
 	 * Description :
@@ -86,52 +83,7 @@ public abstract class BaseDao {
 				hql += ","+ids.get(i);
 			}
 		}
-		return queryByHQL(hql);
-	}
-	
-	/**
-	 * Description :
-	 * @param hql
-	 * @return
-	 * @Author: 杨聪艺
-	 * @Create Date: 2014-8-13
-	 */
-	@SuppressWarnings("rawtypes")
-	public List queryByHQL(String hql) {
-		Session s = HibernateUtil.getSession();
-		Transaction tx=s.beginTransaction();
-		Query q= s.createQuery(hql);
-		List res = q.list();
-		tx.commit();
-		HibernateUtil.closeSession(s);
-		return res;
-	}
-	
-	/**
-	 * Description :
-	 * @param hql
-	 * @Author: 杨聪艺
-	 * @Create Date: 2014-8-13
-	 */
-	public void deleteByHQL(String hql) {
-		updateByHQL(hql);
-	}
-	
-	/**
-	 * Description :
-	 * @param hql
-	 * @return
-	 * @Author: 杨聪艺
-	 * @Create Date: 2014-8-13
-	 */
-	public int updateByHQL(String hql) {
-		Session s = HibernateUtil.getSession();
-		Transaction tx=s.beginTransaction();
-		Query q= s.createQuery(hql);
-        int res=q.executeUpdate();
-		tx.commit();
-		HibernateUtil.closeSession(s);
-		return res;
+		return hibernateTemplateDao.queryByHQL(hql);
 	}
 	
 	/**
@@ -183,7 +135,7 @@ public abstract class BaseDao {
 				hql += ","+ids.get(i);
 			}
 		}
-		deleteByHQL(hql);
+		hibernateTemplateDao.deleteByHQL(hql);
 	}
 	
 	/**
@@ -211,25 +163,25 @@ public abstract class BaseDao {
 	@SuppressWarnings("rawtypes")
 	public List queryByCondition(Map<String, Object> condition,Class<?> clazz,Integer pageNo,Integer pageSize) {
 		//获取session
-				Session session=HibernateUtil.getSession();
-				//构造查询条件
-				Criteria criteria=session.createCriteria(clazz);
-				if(EmptyUtil.isNotNull(condition)) {
-					Set<String> keys=condition.keySet();
-					for(String key:keys) {
-						criteria.add(Restrictions.eq(key,condition.get(key)));
-					}
-				}
-				if(EmptyUtil.isNotEmpty(pageNo) && EmptyUtil.isNotEmpty(pageSize)) {
-					criteria.setFirstResult(pageSize*(pageNo-1));
-					criteria.setMaxResults(pageSize);
-				}
-				//查询
-				List res=criteria.list();
-				//关闭session
-				HibernateUtil.closeSession(session);
-				//返回
-				return res;
+		Session session=HibernateUtil.getSession();
+		//构造查询条件
+		Criteria criteria=session.createCriteria(clazz);
+		if(EmptyUtil.isNotNull(condition)) {
+			Set<String> keys=condition.keySet();
+			for(String key:keys) {
+				criteria.add(Restrictions.eq(key,condition.get(key)));
+			}
+		}
+		if(EmptyUtil.isNotEmpty(pageNo) && EmptyUtil.isNotEmpty(pageSize)) {
+			criteria.setFirstResult(pageSize*(pageNo-1));
+			criteria.setMaxResults(pageSize);
+		}
+		//查询
+		List res=criteria.list();
+		//关闭session
+		HibernateUtil.closeSession(session);
+		//返回
+		return res;
 	}
 	
 	/**
@@ -397,119 +349,12 @@ public abstract class BaseDao {
 		HibernateUtil.closeSession(session);
 		return totalRecords;
 	}
-	
-	/**
-	 * Description :查询总记录数
-	 * @param hsql
-	 * @return
-	 * @Author: 杨聪艺
-	 * @Create Date: 2014-6-8
-	 */
-	public long getCount(String hsql) {
-		Session session=HibernateUtil.getSession();
-		Query q=session.createQuery(hsql);
-		long count=(Long)q.list().get(0);
-		HibernateUtil.closeSession(session);
-		return count;
-	}
-	
-	public void queryBySQL(String sql) {
-		
-	}
-	
-	public void updateBySQL(String sql) {
-		
-	}
-	
-	public void deleteBySQL(String hql) {
-		
-	}
-	
-	/**
-	 * Description :
-	 * @param sql
-	 * @Author: 杨聪艺
-	 * @Create Date: 2014-8-13
-	 */
-	public void insertBySQL(String sql) {
-		Connection con=getConnection();
-		PreparedStatement ps=getPreparedStatement(con, sql);
-		
-		try {
-			ps.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			closePreparedStatement(ps);
-			closeConnection(con);
-		}
-	}
-	
-	protected Connection getConnection() {
-		
-		Connection con=null;
-		
-		return con;
-	}
-	
-	protected PreparedStatement getPreparedStatement(Connection con,String sql) {
-		
-		PreparedStatement ps=null;
-		
-		if(EmptyUtil.isEmpty(con)) {
-			return ps;
-		}
-		
-		try {
-			ps=con.prepareStatement(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return ps;
-	}
-	
-	protected void closeResultSet(ResultSet rs) {
-		
-		if(rs!=null) {
-			try {
-				rs.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-			rs=null;
-		}
-		
-	}
-	
-	protected void closeAll(Connection con,PreparedStatement ps,ResultSet rs) {
-		closeResultSet(rs);
-		closePreparedStatement(ps);
-		closeConnection(con);
-	}
-	
-	protected void closeConnection(Connection con) {
-		if(con!=null) {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-			con=null;
-		}
-	}
-	
-	protected void closePreparedStatement(PreparedStatement ps) {
-		if(ps!=null) {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-			ps=null;
-		}
-	}
 
+	public HibernateTemplateDao getHibernateTemplateDao() {
+		return hibernateTemplateDao;
+	}
+	public void setHibernateTemplateDao(HibernateTemplateDao hibernateTemplateDao) {
+		this.hibernateTemplateDao = hibernateTemplateDao;
+	}
+	
 }
