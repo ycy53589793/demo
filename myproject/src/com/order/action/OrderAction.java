@@ -19,6 +19,7 @@ public class OrderAction extends PageAction {
 	 */
 	private static final long serialVersionUID = -3044009783035775912L;
 	
+	private Order order;
 	private JSONObject jsonOrders;
 	private OrderQueryCondition orderQuery;
 	
@@ -57,6 +58,21 @@ public class OrderAction extends PageAction {
 		}
 		return JSON;
 		
+	}
+	
+	public String addOrder() {
+		OrderService orderService = (OrderService) SpringUtil.getBean("orderService");
+		orderService.saveOrder(order);
+		return JSON;
+	}
+	
+	
+
+	public Order getOrder() {
+		return order;
+	}
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	public JSONObject getJsonOrders() {

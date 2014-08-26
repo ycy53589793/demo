@@ -1,0 +1,117 @@
+<%@ page pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:url var="addOrder" value="/order/action/orderAction_addOrder.action"/>
+
+<link rel="stylesheet" type="text/css" href="EasyUI/themes/color.css">
+<script type="text/javascript">
+$(document).ready(
+	function () {
+		$("#newOrderDialog").dialog('close');
+	}
+);
+//新增
+function newOrder() {
+ 	$("#newOrderDialog").dialog('open');
+ 	$("#newOrderDialog").form('clear');
+}
+//保存
+function saveUser() {
+	//form表单校验
+	var flag = $("#addOrderForm").form('validate');
+	if(!flag) {
+		return;
+	}
+	$.ajax({
+        type: "post",
+        url: '${addOrder}',
+        data: $("#addOrderForm").serializeJson(),
+        dataType: "json",
+        success: function(data) {
+        			//关闭窗口
+        			$("#newOrderDialog").dialog('close');
+        			//提示信息
+        			$.messager.alert("操作提示", "保存成功", "info");
+        			//订单列表重新加载
+        			$("#orderListTable").datagrid({
+		    			url				: '${getOrderByCondition}' ,
+		    			queryParams		: $("#orderQueryForm").serializeJson()
+		    		});
+                 },
+        error: function(data) {
+		           $.messager.alert("操作提示", "保存失败", "error");
+		       }
+    });
+}
+</script>
+
+<div id="newOrderDialog" class="easyui-dialog" title="新增订单" style="width:500px;height:380px;padding:10px 20px" closed="true" buttons="#order-buttons">
+	<form id="addOrderForm" method="post" novalidate>
+		<table style="width: 100%;height: 100%">
+			<tr>
+				<td>
+					<label>乘客手机号:</label>
+					<input name="order.passengerPhone" class="easyui-textbox" required="true" style="width:140px">
+				</td>
+				<td>
+					<label>起始地号:</label>
+					<input name="order.startPlace" class="easyui-textbox" required="true" style="width:140px">
+				</td>
+				<td>
+					<label>目的地:</label>
+					<input name="order.endPlace" class="easyui-textbox" required="true" style="width:140px">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>是否预约:</label>
+					<select class="easyui-combobox" name="order.isPreOrder" style="width:140px">
+						<option value="N">否</option>
+		  				<option value="Y">是</option>
+		  			</select>
+	  			</td>
+	  			<td>
+		  			<label>是否包车:</label>
+					<select class="easyui-combobox" name="order.isWholeCar" style="width:140px">
+						<option value="N">否</option>
+		  				<option value="Y">是</option>
+		  			</select>
+	  			</td>
+	  			<td>
+		  			<label>是否带小孩:</label>
+					<select class="easyui-combobox" name="order.haveChild" style="width:140px">
+						<option value="N">否</option>
+		  				<option value="Y">是</option>
+		  			</select>
+	  			</td>
+			<tr>
+			<tr>
+				<td>
+					<label>人数:</label>
+					<input name="order。personNumber" type="radio" value="1" checked="checked">1
+					<input name="order。personNumber" type="radio" value="2">2
+					<input name="order。personNumber" type="radio" value="3">3
+					<input name="order。personNumber" type="radio" value="4">4
+				</td>
+				<td>
+					<label>预约时间:</label>
+					<input class="easyui-datetimebox" name="order.preTime" style="width:140px"/>
+				</td>
+				<td>
+					<label>失效时间:</label>
+					<input class="easyui-datetimebox" name="order.expiryDate" style="width:140px"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<label>备注:</label>
+					<input name="order.remark" class="easyui-textbox" style="height:60px;width:320px">
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<div id="order-buttons">
+	<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">保存</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#newOrderDialog').dialog('close')" style="width:90px">取消</a>
+</div>

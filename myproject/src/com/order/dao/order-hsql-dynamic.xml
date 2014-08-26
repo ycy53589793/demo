@@ -8,11 +8,50 @@
         from 
         	Order o
         where 1=1
+        <#if id??>
+        	and o.id = ${id}
+        </#if>
         <#if userPhone??>
-        	and o.userPhone = ${userPhone}
+        	and o.userPhone = '${userPhone}'
         </#if>
         <#if passengerPhone??>
-        	and o.passengerPhone = ${passengerPhone}
+        	and o.passengerPhone = '${passengerPhone}'
+        </#if>
+        <#if startPlace??>
+        	and o.startPlace like '%${startPlace}%'
+        </#if>
+        <#if endPlace??>
+        	and o.endPlace like '%${endPlace}%'
+        </#if>
+        <#if personNumber??>
+        	and o.personNumber = ${personNumber}
+        </#if>
+        <#if isWholeCar??>
+        	and o.isWholeCar = '${isWholeCar}'
+        </#if>
+        <#if expiryDateFm??>
+        	and o.expiryDate >= ${expiryDateFm}
+        </#if>
+        <#if expiryDateTo??>
+        	and o.expiryDate <= ${expiryDateTo}
+        </#if>
+        <#if haveChild??>
+        	and o.haveChild = '${haveChild}'
+        </#if>
+        <#if status??>
+        	and o.status = '${status}'
+        </#if>
+        <#if isPreOrder??>
+        	and o.isPreOrder = '${isPreOrder}'
+        </#if>
+        <#if preTimeFm??>
+        	and o.preTime >= ${preTimeFm}
+        </#if>
+        <#if preTimeTo??>
+        	and o.preTime <= ${preTimeTo}
+        </#if>
+        <#if remark??>
+        	and o.remark like '%${remark}%'
         </#if>
     ]]>
     </hql-query>

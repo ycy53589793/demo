@@ -104,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        ]],
 			        toolbar:[{  
 	                    text:'新增',iconCls:'icon-add',handler:function(){  
-	                    	//showMergeReceiptGroupPanel();
+	                    	newOrder();
 	                    }  
 	                },  
 	                {text:'删除',iconCls:'icon-remove',handler:function(){  
@@ -136,7 +136,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			url				: '${getOrderByCondition}' ,
     			queryParams		: $("#orderQueryForm").serializeJson()
     		});
-    		//$("#orderQueryForm").submit();
+    	}
+    	//重置
+    	function orderReset() {
+    		$("#orderQueryForm")[0].reset();
     	}
     </script>
 
@@ -148,7 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  <div class="masthead">
 		  <ul class="nav nav-pills pull-right">
 		    <li class="active"><a href="javascript:void(0)" onclick="orderQuery()">查询</a></li>
-		    <li><a href="#">重置</a></li>
+		    <li><a href="javascript:void(0)" onclick="orderReset()">重置</a></li>
 		  </ul>
 		  <h3 class="muted">查询条件</h3>
 	  </div>
@@ -221,5 +224,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     </div> <!-- /container -->
     
+    <%@ include file="order-dialog.jspf"%>
   </body>
 </html>

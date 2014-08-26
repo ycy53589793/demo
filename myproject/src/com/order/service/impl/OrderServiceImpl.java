@@ -12,9 +12,7 @@ import com.util.SpringUtil;
 public class OrderServiceImpl implements OrderService {
 	
 	public List<Order> getOrders(Integer pageNo,Integer pageSize) {
-		
 		OrderDao orderDao = (OrderDao) SpringUtil.getBean("orderDao");
-		
 		return orderDao.getOrders(pageNo,pageSize);
 	}
 	
@@ -26,6 +24,12 @@ public class OrderServiceImpl implements OrderService {
 		OrderDao orderDao = (OrderDao) SpringUtil.getBean("orderDao");
 		
 		return orderDao.getOrders(con);
+	}
+	
+	public Order saveOrder(Order order) {
+		OrderDao orderDao = (OrderDao) SpringUtil.getBean("orderDao");
+		orderDao.save(order);
+		return order;
 	}
 
 }

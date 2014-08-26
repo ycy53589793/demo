@@ -79,3 +79,51 @@ String.isNotEmpty=function(chkStr) {
 	
 	return true;
 }
+
+function serializeObject(formId) {  
+     var o = {};  
+     var a = jQuery('#' + formId).serializeArray();  
+     jQuery.each(a, function() {  
+         if (o[this.name]) {  
+             if (!o[this.name].push) {  
+                 o[this.name] = [ o[this.name] ];  
+             }  
+             o[this.name].push(this.value || '');  
+         } else {  
+             o[this.name] = this.value || '';  
+         }  
+     });  
+
+     return jsonToString(o);  
+ } 
+ 
+ //转换json为string
+function jsonToString(obj){   
+     var THIS = this;    
+     switch(typeof(obj)){   
+         case 'string':   
+             return '"' + obj.replace(/(["\\])/g, '\\$1') + '"';   
+         case 'array':   
+             return '[' + obj.map(THIS.jsonToString).join(',') + ']';   
+         case 'object':   
+              if(obj instanceof Array){   
+                 var strArr = [];   
+                 var len = obj.length;   
+                 for(var i=0; i<len; i++){   
+                     strArr.push(THIS.jsonToString(obj[i]));   
+                }   
+                 return '[' + strArr.join(',') + ']';   
+             }else if(obj==null){   
+                 return 'null';   
+
+             }else{   
+                var string = [];   
+                for (var property in obj) string.push(THIS.jsonToString(property) + ':' + THIS.jsonToString(obj[property]));   
+                 return '{' + string.join(',') + '}';   
+             }   
+         case 'number':   
+             return obj;   
+         case false:   
+             return obj;   
+     }   
+}

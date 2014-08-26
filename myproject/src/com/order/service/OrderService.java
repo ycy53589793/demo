@@ -10,5 +10,7 @@ public interface OrderService {
 	List<Order> getOrders(Integer pageNo,Integer pageSize);
 	
 	List<Order> getOrderByCondition(OrderQueryCondition queryCondition,Integer pageNo,Integer pageSize);
+	
+	Order saveOrder(Order order);
 
 }
