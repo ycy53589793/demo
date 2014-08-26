@@ -31,5 +31,10 @@ public class OrderServiceImpl implements OrderService {
 		orderDao.save(order);
 		return order;
 	}
+	
+	public void deleteOrder(List<Integer> ids) {
+		OrderDao orderDao = (OrderDao) SpringUtil.getBean("orderDao");
+		orderDao.deleteByIds(ids, Order.class);
+	}
 
 }

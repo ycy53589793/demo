@@ -17,6 +17,7 @@ import org.hibernate.criterion.Restrictions;
 import com.template.dao.HibernateTemplateDao;
 import com.util.EmptyUtil;
 import com.util.HibernateUtil;
+import com.util.SpringUtil;
 
 /**
  * Description:   基础dao类
@@ -112,7 +113,7 @@ public abstract class BaseDao {
 	 * @Author: 杨聪艺
 	 * @Create Date: 2014-8-13
 	 */
-	public void deleteByIds(Long ids[],Class<?> clazz) {
+	public void deleteByIds(Integer ids[],Class<?> clazz) {
 		if(EmptyUtil.isNotNull(ids) && EmptyUtil.isNotEmpty(ids)) {
 			deleteByIds(Arrays.asList(ids),clazz);
 		}
@@ -125,8 +126,11 @@ public abstract class BaseDao {
 	 * @Author: 杨聪艺
 	 * @Create Date: 2014-8-13
 	 */
-	public void deleteByIds(List<Long> ids,Class<?> clazz) {
-		String hql = "delete from "+clazz.getName()+" where id in(";
+	public void deleteByIds(List<Integer> ids,Class<?> clazz) {
+		if(EmptyUtil.isEmpty(ids)) {
+			return;
+		}
+		String hql = "delete from "+clazz.getSimpleName()+" where id in(";
 		for(int i=0;i<ids.size();i++) {
 			if(i==0) {
 				hql += ids.get(i);
@@ -134,6 +138,10 @@ public abstract class BaseDao {
 			else {
 				hql += ","+ids.get(i);
 			}
+		}
+		hql += ")";
+		if(EmptyUtil.isNull(hibernateTemplateDao)) {
+			hibernateTemplateDao = (HibernateTemplateDao) SpringUtil.getBean("hibernateTemplateDao");
 		}
 		hibernateTemplateDao.deleteByHQL(hql);
 	}

@@ -108,12 +108,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    }  
 	                },  
 	                {text:'删除',iconCls:'icon-remove',handler:function(){  
-	                    	//deleteImportAddressInfo();
+	                    	deleteOrder();
 	                    }  
-	                },
-	                {text:'保存',iconCls:'icon-edit',handler:function() {
-	                		//location.href = "${ctx}/addressManage";
-	                    }
 	                }
 	                ],  
 			    });
@@ -172,14 +168,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	      			<td><input class="easyui-textbox" type="text" name="orderQuery.status"/></td>
 	      			<td>
 	      				<select class="easyui-combobox" name="orderQuery.isWholeCar" style="width:120px;">
+	      					<option></option>
+	      					<option value="N">否</option>
 	      					<option value="Y">是</option>
-							<option value="N">否</option>
 	      				</select>
 	      			</td>
 	      			<td>
 	      				<select class="easyui-combobox" name="orderQuery.isPreOrder" style="width:120px;">
+	      					<option></option>
+	      					<option value="N">否</option>
 	      					<option value="Y">是</option>
-							<option value="N">否</option>
 	      				</select>
 	      			</td>
 	      		</tr>
@@ -190,8 +188,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	      		<tr>
 	      			<td>
 	      				<select class="easyui-combobox" name="orderQuery.haveChild" style="width:120px;">
+	      					<option></option>
+	      					<option value="N">否</option>
 	      					<option value="Y">是</option>
-							<option value="N">否</option>
 	      				</select>
 	      			</td>
 	      			<td><input class="easyui-datetimebox" name="orderQuery.preTimeFm" style="width:120px"/></td>

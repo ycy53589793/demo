@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:url var="addOrder" value="/order/action/orderAction_addOrder.action"/>
+<c:url var="deleteOrder" value="/order/action/orderAction_deleteOrder.action"/>
 
 <link rel="stylesheet" type="text/css" href="EasyUI/themes/color.css">
 <script type="text/javascript">
@@ -40,6 +41,38 @@ function saveUser() {
                  },
         error: function(data) {
 		           $.messager.alert("操作提示", "保存失败", "error");
+		       }
+    });
+}
+//删除
+function deleteOrder() {
+	//获取选择的行
+	var rows = $("#orderListTable").datagrid('getSelections');
+	if(rows == null || rows.length <= 0) {
+		$.messager.alert("操作提示", "请勾选要删除的数据", "error");
+		return;
+	}
+	var ids = [];
+	//获取订单id
+	for(var i=0;i<rows.length;i++) {
+		ids[i]=rows[i].id;
+	}
+	$.ajax({
+        type: "post",
+        url: '${deleteOrder}',
+        data: {"ids":ids},
+        dataType: "json",
+        success: function(data) {
+        			//提示信息
+        			$.messager.alert("操作提示", "删除成功", "info");
+        			//订单列表重新加载
+        			$("#orderListTable").datagrid({
+		    			url				: '${getOrderByCondition}' ,
+		    			queryParams		: $("#orderQueryForm").serializeJson()
+		    		});
+                 },
+        error: function(data) {
+		           $.messager.alert("操作提示", data, "error");
 		       }
     });
 }

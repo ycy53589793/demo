@@ -1,5 +1,6 @@
 package com.order.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,17 @@ public class OrderAction extends PageAction {
 	public String addOrder() {
 		OrderService orderService = (OrderService) SpringUtil.getBean("orderService");
 		orderService.saveOrder(order);
+		return JSON;
+	}
+	
+	public String deleteOrder() {
+		OrderService orderService = (OrderService) SpringUtil.getBean("orderService");
+		String ids[] = servletRequest.getParameterValues("ids[]");
+		List<Integer> orderIds = new ArrayList<Integer>();
+		for(String id:ids) {
+			orderIds.add(new Integer(id));
+		}
+		orderService.deleteOrder(orderIds);
 		return JSON;
 	}
 	

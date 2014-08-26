@@ -12,5 +12,7 @@ public interface OrderService {
 	List<Order> getOrderByCondition(OrderQueryCondition queryCondition,Integer pageNo,Integer pageSize);
 	
 	Order saveOrder(Order order);
+	
+	void deleteOrder(List<Integer> ids);
 
 }
