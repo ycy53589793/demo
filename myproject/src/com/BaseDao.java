@@ -44,6 +44,7 @@ public abstract class BaseDao {
 	public Object queryById(Integer id,Class<?> clazz) {
 		Session session = HibernateUtil.getSession();
 		Object obj = session.load(clazz,id);
+		HibernateUtil.closeSession(session);
 		return obj;
 	}
 	
