@@ -41,12 +41,10 @@ public abstract class BaseDao {
 	 * @Author: 杨聪艺
 	 * @Create Date: 2014-8-13
 	 */
-	@SuppressWarnings("rawtypes")
-	public Object queryById(Long id,Class<?> clazz) {
-		Long ids[] = new Long[1];
-		ids[0]=id;
-		List res = queryByIds(ids,clazz);
-		return res.get(0);
+	public Object queryById(Integer id,Class<?> clazz) {
+		Session session = HibernateUtil.getSession();
+		Object obj = session.load(clazz,id);
+		return obj;
 	}
 	
 	/**
@@ -58,7 +56,7 @@ public abstract class BaseDao {
 	 * @Create Date: 2014-8-13
 	 */
 	@SuppressWarnings("rawtypes")
-	public List queryByIds(Long ids[],Class<?> clazz) {
+	public List queryByIds(Integer ids[],Class<?> clazz) {
 		if(EmptyUtil.isNotNull(ids) && EmptyUtil.isNotEmpty(ids)) {
 			return queryByIds(Arrays.asList(ids),clazz);
 		}
@@ -74,8 +72,11 @@ public abstract class BaseDao {
 	 * @Create Date: 2014-8-13
 	 */
 	@SuppressWarnings("rawtypes")
-	public List queryByIds(List<Long> ids,Class<?> clazz) {
-		String hql = "from "+clazz.getName()+" where id in(";
+	public List queryByIds(List<Integer> ids,Class<?> clazz) {
+		if(EmptyUtil.isEmpty(ids)) {
+			return null;
+		}
+		String hql = "from "+clazz.getSimpleName()+" where id in(";
 		for(int i=0;i<ids.size();i++) {
 			if(i==0) {
 				hql += ids.get(i);
@@ -83,6 +84,10 @@ public abstract class BaseDao {
 			else {
 				hql += ","+ids.get(i);
 			}
+		}
+		hql += ")";
+		if(EmptyUtil.isNull(hibernateTemplateDao)) {
+			hibernateTemplateDao = (HibernateTemplateDao) SpringUtil.getBean("hibernateTemplateDao");
 		}
 		return hibernateTemplateDao.queryByHQL(hql);
 	}
