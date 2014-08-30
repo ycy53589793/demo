@@ -1,8 +1,13 @@
 package com.common;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+
 import com.BaseAction;
 import com.constant.Constant;
+import com.filter.ShiroUser;
 import com.opensymphony.xwork2.Action;
+import com.user.bean.User;
 import com.user.service.UserService;
 import com.util.EmptyUtil;
 import com.util.ResultMessage;
@@ -37,24 +42,46 @@ public class LoginAction extends BaseAction {
 	 */
 	public String checkUser() throws Exception {
 		
-		if(EmptyUtil.isEmpty(username) || EmptyUtil.isEmpty(password)) {
-			username = (String) strutsSession.get(Constant.STRING.USERNAME);
-			password = (String) strutsSession.get(Constant.STRING.PASSWORD);
+		//从session中获取登录用户信息
+		ShiroUser user = (ShiroUser) SecurityUtils.getSubject().getPrincipal();
+		//如果登录用户不为空,用户已经登录过,直接返回成功
+		if(EmptyUtil.isNotNull(user) && EmptyUtil.isNotEmpty(user.username)) {
+			return Action.SUCCESS;
 		}
-		if(EmptyUtil.isEmpty(username) || EmptyUtil.isEmpty(password)) {
-			return Action.ERROR;
+		else {
+			//判断用户名 密码
+			if(EmptyUtil.isEmpty(username) || EmptyUtil.isEmpty(password)) {
+				return Action.ERROR;
+			}
+			else {
+				//shiro安全框架验证用户是否合法
+				UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+				try {
+					currentUser.login(token);
+				}catch(Exception e) {
+					e.printStackTrace();
+					//登录失败
+					return Action.ERROR;
+				}
+			}
 		}
 		
-		//spring自动注入
-		UserService userService = (UserService) SpringUtil.getBean("userService");
-		
-		ResultMessage msg=userService.checkUserExist(username, password);
-		
-		if(!msg.isSuccess()) {
-			return Action.ERROR;
-		}
-		//用户信息放入session
-		strutsSession.put(Constant.STRING.LOGIN_USER, msg.getResultDate());
+//		if(EmptyUtil.isEmpty(username) || EmptyUtil.isEmpty(password)) {
+//			username = (String) strutsSession.get(Constant.STRING.USERNAME);
+//			password = (String) strutsSession.get(Constant.STRING.PASSWORD);
+//		}
+//		if(EmptyUtil.isEmpty(username) || EmptyUtil.isEmpty(password)) {
+//			return Action.ERROR;
+//		}
+//		
+//		//spring自动注入
+//		UserService userService = (UserService) SpringUtil.getBean("userService");
+//		
+//		ResultMessage msg=userService.checkUserExist(username, password);
+//		
+//		if(!msg.isSuccess()) {
+//			return Action.ERROR;
+//		}
 		
 		return Action.SUCCESS;
 	}

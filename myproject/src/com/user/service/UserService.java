@@ -1,5 +1,6 @@
 package com.user.service;
 
+import com.user.bean.User;
 import com.util.ResultMessage;
 
 public interface UserService {
@@ -12,5 +13,9 @@ public interface UserService {
 	 * @Create Date: 2014-4-3
 	 */
 	ResultMessage checkUserExist(String username, String password);
+	
+	User findUserByUserNameAndPassword(String username,String password);
+	
+	User getUserById(Integer userId);
 
 }

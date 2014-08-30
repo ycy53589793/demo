@@ -1,5 +1,8 @@
 package com.user.bean;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * AbstractRole entity provides the base persistence definition of the Role
  * entity. @author MyEclipse Persistence Tools
@@ -16,6 +19,7 @@ public class Role implements java.io.Serializable {
 	private Integer id;
 	private Org org;
 	private String roleName;
+	private Set<User> users = new HashSet<User>(0);
 
 	// Constructors
 
@@ -53,6 +57,14 @@ public class Role implements java.io.Serializable {
 
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 }

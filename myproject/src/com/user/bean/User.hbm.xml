@@ -15,11 +15,6 @@
                 <comment>类型id</comment>
             </column>
         </many-to-one>
-        <many-to-one name="role" class="com.user.bean.Role" fetch="select">
-            <column name="role_id">
-                <comment>角色id</comment>
-            </column>
-        </many-to-one>
         <many-to-one name="org" class="com.user.bean.Org" fetch="select">
             <column name="org_id">
                 <comment>公司id</comment>
@@ -85,5 +80,11 @@
                 <comment>密码</comment>
             </column>
         </property>
+        <set name="roles" inverse="true">
+            <key>
+                <column name="user_id" />
+            </key>
+            <one-to-many class="com.user.bean.Role" />
+        </set>
     </class>
 </hibernate-mapping>

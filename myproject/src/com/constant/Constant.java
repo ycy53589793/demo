@@ -18,7 +18,7 @@ public class Constant {
 	}
 	//字符串常量
 	public static final class STRING {
-		public static final String Y="Y",N="N",SQL="sql",HQL="hql",USERNAME="username",PASSWORD="password",LOGIN_USER="user";
+		public static final String Y="Y",N="N",SQL="sql",HQL="hql",USERNAME="username",PASSWORD="password",LOGIN_USER="shirouser";
 	}
 	
 }

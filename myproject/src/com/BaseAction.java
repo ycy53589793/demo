@@ -6,6 +6,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.Action;
@@ -29,6 +31,8 @@ public class BaseAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = 1L;
 	protected String JSON = "json";
+	
+	protected Subject currentUser = SecurityUtils.getSubject();;
 	
 	private static ActionContext strutsContext=ActionContext.getContext();
 	

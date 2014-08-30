@@ -11,6 +11,19 @@
      	<welcome-file>common/login.jsp</welcome-file>
   	</welcome-file-list>
   
+  	<!-- apache-shiro 拦截器 -->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>  
+        <url-pattern>*.jsp</url-pattern>  
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>  
+        <url-pattern>*.action</url-pattern>  
+    </filter-mapping>
 	<!-- 配置sitemesh,暂时不用, struts-cleanup、sitemesh要在struts2前面-->
 	<filter>
 		<filter-name>struts-cleanup</filter-name>
@@ -55,18 +68,18 @@
 	</listener>
 	
 	<!-- Session过滤器 start -->
-	<filter>
-	  	<filter-name>sessionfilter</filter-name>
-	  	<filter-class>com.filter.SessionFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>sessionfilter</filter-name>
-		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>sessionfilter</filter-name>
-		<url-pattern>*.action</url-pattern>
-	</filter-mapping>
+<!-- 	<filter> -->
+<!-- 	  	<filter-name>sessionfilter</filter-name> -->
+<!-- 	  	<filter-class>com.filter.SessionFilter</filter-class> -->
+<!-- 	</filter> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>sessionfilter</filter-name> -->
+<!-- 		<url-pattern>*.jsp</url-pattern> -->
+<!-- 	</filter-mapping> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>sessionfilter</filter-name> -->
+<!-- 		<url-pattern>*.action</url-pattern> -->
+<!-- 	</filter-mapping> -->
 	<!-- Session过滤器 end -->
 	
 </web-app>

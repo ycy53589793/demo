@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.constant.Constant;
+import com.user.bean.User;
 import com.user.dao.UserDao;
 import com.user.service.UserService;
 import com.util.EmptyUtil;
@@ -21,8 +22,25 @@ public class UserServiceImpl implements UserService {
 	 * @Author: 杨聪艺
 	 * @Create Date: 2014-4-3
 	 */
-	@SuppressWarnings("rawtypes")
 	public ResultMessage checkUserExist(String username, String password) {
+		
+		User user = findUserByUserNameAndPassword(username,password);
+		
+		ResultMessage msg = new ResultMessage();
+		msg.setSuccess(false);
+		
+		if(EmptyUtil.isNotNull(user)) {
+			msg.setSuccess(true);
+			msg.setResultDate(user);
+			return msg;
+		}
+		
+		return msg;
+		
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public User findUserByUserNameAndPassword(String username,String password) {
 		
 		Map<String,Object> condition = new HashMap<String,Object>();
 		condition.put("username", username);
@@ -30,17 +48,16 @@ public class UserServiceImpl implements UserService {
 		
 		List res=userDao.queryByCondition(condition);
 		
-		ResultMessage msg = new ResultMessage();
-		msg.setSuccess(false);
-		
 		if(EmptyUtil.isNotEmpty(res) && res.size()==Constant.NUMBER.ONE) {
-			msg.setSuccess(true);
-			msg.setResultDate(res.get(0));
-			return msg;
+			return (User) res.get(0);
 		}
 		
-		return msg;
+		return null;
 		
+	}
+	
+	public User getUserById(Integer userId) {
+		return (User) userDao.queryById(userId, User.class);
 	}
 
 	public UserDao getUserDao() {

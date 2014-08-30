@@ -4,16 +4,29 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	
+	<!-- action -->
 	<bean id="loginAction" class="com.common.LoginAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
 	</bean>
 	<bean id="orderAction" class="com.order.action.OrderAction" scope="prototype"/>
+	<!-- end -->
 	
+	<!-- service -->
 	<bean id="userService" class="com.user.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
 	<bean id="orderService" class="com.order.service.impl.OrderServiceImpl"/>
+	<bean id="dynamicStatementBuilder" class="com.template.service.impl.DynamicHibernateStatementBuilderImpl">
+		<property name="fileNames">
+            <list>
+                <value>classpath*:/**/*-dynamic.xml</value><!-- 这里我们指定要加载某个文件夹下所有以-dynamic.xml结尾的文件   -->
+            </list>
+        </property>
+	</bean>
+	<!-- end -->
 	
+	<!-- dao -->
 	<bean id="userDao" class="com.user.dao.UserDao"/>
 	<bean id="orderDao" class="com.order.dao.OrderDao"/>
 	<bean id="baseDao" class="com.BaseDao" abstract="true">
@@ -25,13 +38,37 @@
 		</property>
 		<property name="dynamicStatementBuilder" ref="dynamicStatementBuilder"></property>
 	</bean>
-	<bean id="dynamicStatementBuilder" class="com.template.service.impl.DynamicHibernateStatementBuilderImpl">
-		<property name="fileNames">
-            <list>
-                <value>classpath*:/**/*-dynamic.xml</value><!-- 这里我们指定要加载某个文件夹下所有以-dynamic.xml结尾的文件   -->
-            </list>
-        </property>
-	</bean>
+	<!-- end -->
 	
+	<!-- bean -->
 	<bean id="order" class="com.order.bean.Order"/>
+	<bean id="user" class="com.user.bean.User"/>
+	<!-- end -->
+	
+	<!-- Shiro's main business-tier object for web-enabled applications -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="shiroDbRealm" />
+        <property name="cacheManager" ref="shiroEhcacheManager"/>
+    </bean>
+    <!-- 項目自定义的Realm-->
+    <bean id="shiroDbRealm" class="com.filter.ShiroDbRealm">
+        <property name="userService" ref="userService"/>
+    </bean>
+    <!-- Shiro Filter -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/common/login.jsp"/>
+        <property name="successUrl" value="/order/order.jsp"/>
+        <property name="unauthorizedUrl" value="/common/error.jsp"/>
+        <property name="filterChainDefinitions">
+            <value>
+                
+            </value>
+        </property>
+    </bean>
+    <!-- 用户授权信息Cache, 采用EhCache -->
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:/ehcache-shiro.xml"/>
+    </bean>
+    
 </beans>

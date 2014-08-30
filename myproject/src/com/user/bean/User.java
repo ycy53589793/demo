@@ -1,6 +1,8 @@
 package com.user.bean;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * AbstractUser entity provides the base persistence definition of the User
@@ -17,7 +19,6 @@ public class User implements java.io.Serializable {
 	private static final long serialVersionUID = -1607381747432561899L;
 	private Integer id;
 	private Type type;
-	private Role role;
 	private Org org;
 	private String sex;
 	private String enable;
@@ -31,6 +32,7 @@ public class User implements java.io.Serializable {
 	private Integer credit;
 	private String username;
 	private String password;
+	private Set<Role> roles = new HashSet<Role>(0);
 
 	// Constructors
 
@@ -39,12 +41,12 @@ public class User implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public User(Type type, Role role, Org org, String sex,
+	public User(Type type, Set<Role> roles, Org org, String sex,
 			String enable, String phone, Date birthday, String professional,
 			String sign, String detail, String interest, String school,
 			Integer credit, String username, String password) {
 		this.type = type;
-		this.role = role;
+		this.roles = roles;
 		this.org = org;
 		this.sex = sex;
 		this.enable = enable;
@@ -76,14 +78,6 @@ public class User implements java.io.Serializable {
 
 	public void setType(Type type) {
 		this.type = type;
-	}
-
-	public Role getRole() {
-		return this.role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
 	}
 
 	public Org getOrg() {
@@ -188,6 +182,14 @@ public class User implements java.io.Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 }
