@@ -84,7 +84,7 @@
             <key>
                 <column name="user_id" />
             </key>
-            <one-to-many class="com.user.bean.Role" />
+            <one-to-many class="com.role.bean.Role" />
         </set>
     </class>
 </hibernate-mapping>

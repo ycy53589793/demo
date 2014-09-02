@@ -53,8 +53,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
       <form class="form-signin" action="loginAction_checkUser.action" method="post">
         <h2 class="form-signin-heading">请登陆</h2>
-        <input type="text" name="username" class="input-block-level" placeholder="Email address">
-        <input type="password" name="password" class="input-block-level" placeholder="Password">
+        <input type="text" name="username" class="input-block-level" placeholder="用户名">
+        <input type="password" name="password" class="input-block-level" placeholder="密码">
         <label class="checkbox">
           <input type="checkbox" value="remember-me">记住密码
         </label>

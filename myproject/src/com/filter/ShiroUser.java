@@ -3,7 +3,7 @@ package com.filter;
 import java.io.Serializable;
 import java.util.Set;
 
-import com.user.bean.Role;
+import com.role.bean.Role;
 
 public class ShiroUser implements Serializable {
 	

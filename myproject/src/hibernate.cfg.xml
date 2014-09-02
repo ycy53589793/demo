@@ -11,7 +11,7 @@
         	<![CDATA[jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=gbk]]>
         </property>
         <property name="connection.username">root</property>
-        <property name="connection.password">root</property>
+        <property name="connection.password">53589793</property>
         <property name="connection.driver_class">com.p6spy.engine.spy.P6SpyDriver</property>
         <property name="current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
@@ -23,7 +23,7 @@
     	<!-- org -->
     	<mapping resource="com/user/bean/Org.hbm.xml"/>
     	<!-- role -->
-    	<mapping resource="com/user/bean/Role.hbm.xml"/>
+    	<mapping resource="com/role/bean/Role.hbm.xml"/>
     	<!-- type -->
     	<mapping resource="com/user/bean/Type.hbm.xml"/>
     	<!-- order -->

@@ -43,7 +43,7 @@ public abstract class BaseDao {
 	 */
 	public Object queryById(Integer id,Class<?> clazz) {
 		Session session = HibernateUtil.getSession();
-		Object obj = session.load(clazz,id);
+		Object obj = session.get(clazz,id);
 		HibernateUtil.closeSession(session);
 		return obj;
 	}
@@ -207,7 +207,19 @@ public abstract class BaseDao {
 	public void save(Object obj) {
 		Session s=HibernateUtil.getSession();
 		Transaction tx=s.beginTransaction();
-		s.save(obj);
+		try {
+			s.save(obj);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		tx.commit();
+		HibernateUtil.closeSession(s);
+	}
+	
+	public void update(Object obj) {
+		Session s=HibernateUtil.getSession();
+		Transaction tx=s.beginTransaction();
+		s.update(obj);
 		tx.commit();
 		HibernateUtil.closeSession(s);
 	}

@@ -17,7 +17,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springside.modules.security.utils.Digests;
 import org.springside.modules.utils.Encodes;
 
-import com.user.bean.Role;
+import com.role.bean.Role;
 import com.user.bean.User;
 import com.user.service.UserService;
 import com.util.EmptyUtil;

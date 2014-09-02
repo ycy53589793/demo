@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.role.bean.Role;
+
 /**
  * AbstractUser entity provides the base persistence definition of the User
  * entity. @author MyEclipse Persistence Tools

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.BaseCondition;
 import com.user.bean.Org;
 import com.util.EmptyUtil;
 
@@ -18,7 +19,7 @@ import com.util.EmptyUtil;
  * 2014-8-15.1		杨聪艺		2014-8-15		create					
  * </pre>
  */
-public class OrderQueryCondition implements Serializable {
+public class OrderQueryCondition extends BaseCondition implements Serializable {
 	
 	/**
 	 * 

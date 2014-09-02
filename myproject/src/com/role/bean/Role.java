@@ -1,7 +1,6 @@
-package com.user.bean;
+package com.role.bean;
 
-import java.util.HashSet;
-import java.util.Set;
+import com.user.bean.Org;
 
 /**
  * AbstractRole entity provides the base persistence definition of the Role
@@ -19,7 +18,7 @@ public class Role implements java.io.Serializable {
 	private Integer id;
 	private Org org;
 	private String roleName;
-	private Set<User> users = new HashSet<User>(0);
+//	private Set<User> users = new HashSet<User>(0);
 
 	// Constructors
 
@@ -59,12 +58,12 @@ public class Role implements java.io.Serializable {
 		this.roleName = roleName;
 	}
 
-	public Set<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
-	}
+//	public Set<User> getUsers() {
+//		return users;
+//	}
+//
+//	public void setUsers(Set<User> users) {
+//		this.users = users;
+//	}
 
 }

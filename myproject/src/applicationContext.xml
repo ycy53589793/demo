@@ -17,6 +17,7 @@
 		<property name="userDao" ref="userDao"></property>
 	</bean>
 	<bean id="orderService" class="com.order.service.impl.OrderServiceImpl"/>
+	<bean id="roleService" class="com.role.service.impl.RoleServiceImpl"/>
 	<bean id="dynamicStatementBuilder" class="com.template.service.impl.DynamicHibernateStatementBuilderImpl">
 		<property name="fileNames">
             <list>
@@ -29,6 +30,7 @@
 	<!-- dao -->
 	<bean id="userDao" class="com.user.dao.UserDao"/>
 	<bean id="orderDao" class="com.order.dao.OrderDao"/>
+	<bean id="roleDao" class="com.role.dao.RoleDao"/>
 	<bean id="baseDao" class="com.BaseDao" abstract="true">
 		<property name="hibernateTemplateDao" ref="hibernateTemplateDao"></property>
 	</bean>
