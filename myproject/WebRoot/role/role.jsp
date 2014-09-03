@@ -87,6 +87,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				},
 				onExpandRow: function(index,row) {
 					var ddv = $(this).datagrid('getRowDetail',index).find('div.ddv');
+					row.id = typeof(row.id) == "undefined"?"":row.id;
+					row.status = typeof(row.status) == "undefined"?"":row.status;
+					row.roleName = typeof(row.roleName) == "undefined"?"":row.roleName;
 					ddv.panel({
 						border:false,
 						cache:true,
@@ -133,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				path = '${updateRole}';
 			}
 			$('#roleListTable').datagrid('getRowDetail',index).find('form').form('submit',{
-				url: '${addRole}',
+				url: path,
 				onSubmit: function() {
 					return $(this).form('validate');
 				},

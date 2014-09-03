@@ -79,6 +79,7 @@ public class RoleAction extends PageAction {
 			jsonRoles=JSONObject.fromObject(role);
 		}catch(Exception e) {
 			e.printStackTrace();
+			return JSON;
 		}
 		return JSON;
 	}

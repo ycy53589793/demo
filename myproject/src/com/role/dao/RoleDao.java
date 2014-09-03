@@ -1,5 +1,6 @@
 package com.role.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,16 @@ public class RoleDao extends BaseDao {
 			hibernateTemplateDao = (HibernateTemplateDao) SpringUtil.getBean("hibernateTemplateDao");
 		}
 		return hibernateTemplateDao.findByNamedQuery("role.queryByCondition", con);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Role> getRolesByUserId(Integer userId) {
+		if(EmptyUtil.isNull(hibernateTemplateDao)) {
+			hibernateTemplateDao = (HibernateTemplateDao) SpringUtil.getBean("hibernateTemplateDao");
+		}
+		Map<String, Object> con = new HashMap<String, Object>();
+		con.put("userId", userId);
+		return hibernateTemplateDao.findByNamedQuery("role.queryByUserId", con);
 	}
 
 }

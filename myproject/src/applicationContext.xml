@@ -55,6 +55,7 @@
     <!-- 項目自定义的Realm-->
     <bean id="shiroDbRealm" class="com.filter.ShiroDbRealm">
         <property name="userService" ref="userService"/>
+        <property name="roleService" ref="roleService"/>
     </bean>
     <!-- Shiro Filter -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">

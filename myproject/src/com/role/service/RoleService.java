@@ -14,5 +14,7 @@ public interface RoleService {
 	void deleteRole(Role role);
 	
 	List<Role> getRoleByCondition(RoleQueryCondition queryCondition,Integer pageNo,Integer pageSize);
+	
+	List<Role> getRoleByUserId(Integer userId);
 
 }

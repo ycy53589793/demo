@@ -16,4 +16,20 @@
         </#if>
     ]]>
     </hql-query>
+    <!-- 查询某个资源下的直接子节点 -->
+    <hql-query name="role.queryByUserId">
+    <![CDATA[
+    	from
+    		Role r
+    	where
+    		r.id in (
+    			select
+    				ur.role.id
+    			from
+    				UserRole ur
+    			where
+    				ur.user.id = ${userId}
+    		)
+    ]]>
+    </hql-query>
 </dynamic-hibernate-statement>

@@ -1,6 +1,7 @@
 package com.filter;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.shiro.authc.AuthenticationException;
@@ -18,6 +19,7 @@ import org.springside.modules.security.utils.Digests;
 import org.springside.modules.utils.Encodes;
 
 import com.role.bean.Role;
+import com.role.service.RoleService;
 import com.user.bean.User;
 import com.user.service.UserService;
 import com.util.EmptyUtil;
@@ -29,6 +31,7 @@ public class ShiroDbRealm extends AuthorizingRealm implements InitializingBean {
 	private String salt = Encodes.encodeHex(Digests.generateSalt(SALT_SIZE));
 	
 	protected UserService userService;
+	private RoleService roleService;
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -67,7 +70,9 @@ public class ShiroDbRealm extends AuthorizingRealm implements InitializingBean {
 		if(EmptyUtil.isNull(user)) {
 			return null;
 		}
-		return new SimpleAuthenticationInfo(new ShiroUser(user.getId(),user.getUsername(),user.getRoles()),
+		//查询角色
+		List<Role> roles = roleService.getRoleByUserId(user.getId());
+		return new SimpleAuthenticationInfo(new ShiroUser(user.getId(),user.getUsername(),new HashSet<Role>(roles)),
 				user.getPassword(),ByteSource.Util.bytes(salt),getName());
 		
 	}
@@ -84,6 +89,12 @@ public class ShiroDbRealm extends AuthorizingRealm implements InitializingBean {
 	}
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+	public RoleService getRoleService() {
+		return roleService;
+	}
+	public void setRoleService(RoleService roleService) {
+		this.roleService = roleService;
 	}
 
 }

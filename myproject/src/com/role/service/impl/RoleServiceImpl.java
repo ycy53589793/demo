@@ -47,4 +47,10 @@ public class RoleServiceImpl implements RoleService {
 		return roleDao.getRoles(con);
 	}
 
+	@Override
+	public List<Role> getRoleByUserId(Integer userId) {
+		RoleDao roleDao = (RoleDao) SpringUtil.getBean("roleDao");
+		return roleDao.getRolesByUserId(userId);
+	}
+
 }
