@@ -17,6 +17,8 @@ create table orders (
 	is_pre_order char(1) COMMENT '是否预约',
 	pre_time date COMMENT '预约时间',
 	remark varchar(20) COMMENT '备注',
+	task_id int COMMENT '任务id',
 	
+	foreign key(task_id) references task(id),
 	foreign key(org_id) references org(id)
 );

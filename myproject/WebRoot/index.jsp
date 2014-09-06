@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>拼车系统</title>
+    <title>顺风车</title>
     
     <jsp:include page="common/jscss.jsp"/>
     

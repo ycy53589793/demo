@@ -10,7 +10,7 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="org" class="com.user.bean.Org" fetch="select">
+        <many-to-one name="org" class="com.common.bean.Org" fetch="select">
             <column name="org_id">
                 <comment>公司id</comment>
             </column>

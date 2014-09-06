@@ -21,15 +21,19 @@
     	<!-- user -->
     	<mapping resource="com/user/bean/User.hbm.xml"/>
     	<!-- org -->
-    	<mapping resource="com/user/bean/Org.hbm.xml"/>
+    	<mapping resource="com/common/bean/Org.hbm.xml"/>
     	<!-- role -->
     	<mapping resource="com/role/bean/Role.hbm.xml"/>
     	<!-- type -->
-    	<mapping resource="com/user/bean/Type.hbm.xml"/>
+    	<mapping resource="com/common/bean/Type.hbm.xml"/>
     	<!-- order -->
     	<mapping resource="com/order/bean/Order.hbm.xml"/>
     	<!-- user_role -->
     	<mapping resource="com/role/bean/UserRole.hbm.xml"/>
+    	<!-- task -->
+    	<mapping resource="com/task/bean/Task.hbm.xml"/>
+    	<!-- car -->
+    	<mapping resource="com/car/bean/Car.hbm.xml"/>
     </session-factory>
 
 </hibernate-configuration>

@@ -10,12 +10,12 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="type" class="com.user.bean.Type" fetch="select">
+        <many-to-one name="type" class="com.common.bean.Type" fetch="select">
             <column name="type_id">
                 <comment>类型id</comment>
             </column>
         </many-to-one>
-        <many-to-one name="org" class="com.user.bean.Org" fetch="select">
+        <many-to-one name="org" class="com.common.bean.Org" fetch="select">
             <column name="org_id">
                 <comment>公司id</comment>
             </column>

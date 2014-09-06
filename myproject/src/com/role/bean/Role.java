@@ -1,6 +1,6 @@
 package com.role.bean;
 
-import com.user.bean.Org;
+import com.common.bean.Org;
 
 /**
  * AbstractRole entity provides the base persistence definition of the Role

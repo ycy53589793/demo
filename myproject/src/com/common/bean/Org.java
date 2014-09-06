@@ -1,4 +1,4 @@
-package com.user.bean;
+package com.common.bean;
 
 /**
  * AbstractOrg entity provides the base persistence definition of the Org

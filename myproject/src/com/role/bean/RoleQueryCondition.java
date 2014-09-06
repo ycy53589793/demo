@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.BaseCondition;
-import com.user.bean.Org;
+import com.common.bean.Org;
 import com.user.bean.User;
 import com.util.EmptyUtil;
 

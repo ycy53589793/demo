@@ -1,4 +1,4 @@
-package com.filter;
+package com.common.service.impl;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,6 +18,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springside.modules.security.utils.Digests;
 import org.springside.modules.utils.Encodes;
 
+import com.common.bean.ShiroUser;
+import com.common.service.LoginService;
 import com.role.bean.Role;
 import com.role.service.RoleService;
 import com.user.bean.User;
@@ -25,7 +27,7 @@ import com.user.service.UserService;
 import com.util.EmptyUtil;
 import com.util.SpringUtil;
 
-public class ShiroDbRealm extends AuthorizingRealm implements InitializingBean {
+public class LoginServiceImpl extends AuthorizingRealm implements InitializingBean, LoginService {
 	
 	private static final int SALT_SIZE = 8;
 	private String salt = Encodes.encodeHex(Digests.generateSalt(SALT_SIZE));

@@ -18,6 +18,7 @@
 	</bean>
 	<bean id="orderService" class="com.order.service.impl.OrderServiceImpl"/>
 	<bean id="roleService" class="com.role.service.impl.RoleServiceImpl"/>
+	<bean id="taskService" class="com.task.service.impl.TaskServiceImpl"/>
 	<bean id="dynamicStatementBuilder" class="com.template.service.impl.DynamicHibernateStatementBuilderImpl">
 		<property name="fileNames">
             <list>
@@ -31,6 +32,7 @@
 	<bean id="userDao" class="com.user.dao.UserDao"/>
 	<bean id="orderDao" class="com.order.dao.OrderDao"/>
 	<bean id="roleDao" class="com.role.dao.RoleDao"/>
+	<bean id="taskDao" class="com.task.dao.TaskDao"/>
 	<bean id="baseDao" class="com.BaseDao" abstract="true">
 		<property name="hibernateTemplateDao" ref="hibernateTemplateDao"></property>
 	</bean>
@@ -47,13 +49,13 @@
 	<bean id="user" class="com.user.bean.User"/>
 	<!-- end -->
 	
-	<!-- Shiro's main business-tier object for web-enabled applications -->
+	<!-- apache shiro 安全框架  Shiro's main business-tier object for web-enabled applications -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="realm" ref="shiroDbRealm" />
+        <property name="realm" ref="loginService" />
         <property name="cacheManager" ref="shiroEhcacheManager"/>
     </bean>
     <!-- 項目自定义的Realm-->
-    <bean id="shiroDbRealm" class="com.filter.ShiroDbRealm">
+    <bean id="loginService" class="com.common.service.impl.LoginServiceImpl">
         <property name="userService" ref="userService"/>
         <property name="roleService" ref="roleService"/>
     </bean>
@@ -73,5 +75,36 @@
     <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManagerConfigFile" value="classpath:/ehcache-shiro.xml"/>
     </bean>
+    <!-- end -->
+    
+    <!-- quartz定时器  定时器轮询任务列表 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="businessTestTrigger"/>   
+			</list>
+		</property>
+	</bean>
+	<!-- 引用、定制时间间隔 -->
+	<bean id="businessTestTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="businessTestDetail"/>
+		</property>
+		<property name="cronExpression">
+			<value>0 0 12 * * ?</value>
+		</property>
+	</bean>
+	<!-- 引用、配置要运行的方法 -->
+	<bean id="businessTestDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 目标对象 -->
+		<property name="targetObject">
+			<ref bean="taskService"/>
+		</property>
+		<!-- 是否同时发生 -->
+		<property name="concurrent" value="false"></property>
+		<!-- 目标方法 -->
+		<property name="targetMethod" value="run"></property>
+	</bean>
+	<!-- end -->
     
 </beans>

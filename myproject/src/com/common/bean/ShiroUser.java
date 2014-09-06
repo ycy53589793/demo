@@ -1,4 +1,4 @@
-package com.filter;
+package com.common.bean;
 
 import java.io.Serializable;
 import java.util.Set;

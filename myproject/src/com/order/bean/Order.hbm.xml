@@ -10,10 +10,13 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="org" class="com.user.bean.Org" fetch="select">
+        <many-to-one name="org" class="com.common.bean.Org" fetch="select">
             <column name="org_id">
                 <comment>公司id</comment>
             </column>
+        </many-to-one>
+        <many-to-one name="task" class="com.task.bean.Task" fetch="select">
+            <column name="task_id" />
         </many-to-one>
         <property name="userPhone" type="java.lang.String">
             <column name="user_phone" length="20">

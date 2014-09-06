@@ -1,4 +1,4 @@
-package com.user.bean;
+package com.common.bean;
 
 /**
  * AbstractType entity provides the base persistence definition of the Type

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.BaseCondition;
-import com.user.bean.Org;
+import com.common.bean.Org;
 import com.util.EmptyUtil;
 
 /**

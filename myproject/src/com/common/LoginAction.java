@@ -4,14 +4,9 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 
 import com.BaseAction;
-import com.constant.Constant;
-import com.filter.ShiroUser;
+import com.common.bean.ShiroUser;
 import com.opensymphony.xwork2.Action;
-import com.user.bean.User;
-import com.user.service.UserService;
 import com.util.EmptyUtil;
-import com.util.ResultMessage;
-import com.util.SpringUtil;
 
 /**
  * Description:   登陆页面action

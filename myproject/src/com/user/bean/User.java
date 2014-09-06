@@ -2,6 +2,9 @@ package com.user.bean;
 
 import java.util.Date;
 
+import com.common.bean.Org;
+import com.common.bean.Type;
+
 /**
  * AbstractUser entity provides the base persistence definition of the User
  * entity. @author MyEclipse Persistence Tools

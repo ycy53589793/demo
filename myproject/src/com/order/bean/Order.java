@@ -3,7 +3,8 @@ package com.order.bean;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.user.bean.Org;
+import com.common.bean.Org;
+import com.task.bean.Task;
 
 /**
  * AbstractOrders entity provides the base persistence definition of the Orders
@@ -20,6 +21,7 @@ public class Order implements Serializable {
 	private static final long serialVersionUID = -505509538232098500L;
 	private Integer id;
 	private Org org;
+	private Task task;
 	private String userPhone;
 	private String passengerPhone;
 	private String startPlace;
@@ -41,31 +43,6 @@ public class Order implements Serializable {
 
 	/** default constructor */
 	public Order() {
-	}
-
-	/** full constructor */
-	public Order(Org org, String userPhone, String passengerPhone,
-			String startPlace, String startPlacePoint, String endPlace,
-			String endPlacePoint, Integer personNumber, String isWholeCar,
-			Date expiryDate, String haveChild, Date timeExpand, String status,
-			String isInCar, String isPreOrder, Date preTime, String remark) {
-		this.org = org;
-		this.userPhone = userPhone;
-		this.passengerPhone = passengerPhone;
-		this.startPlace = startPlace;
-		this.startPlacePoint = startPlacePoint;
-		this.endPlace = endPlace;
-		this.endPlacePoint = endPlacePoint;
-		this.personNumber = personNumber;
-		this.isWholeCar = isWholeCar;
-		this.expiryDate = expiryDate;
-		this.haveChild = haveChild;
-		this.timeExpand = timeExpand;
-		this.status = status;
-		this.isInCar = isInCar;
-		this.isPreOrder = isPreOrder;
-		this.preTime = preTime;
-		this.remark = remark;
 	}
 
 	// Property accessors
@@ -212,6 +189,14 @@ public class Order implements Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public Task getTask() {
+		return task;
+	}
+
+	public void setTask(Task task) {
+		this.task = task;
 	}
 
 }
